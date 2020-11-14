@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_055209) do
+ActiveRecord::Schema.define(version: 2020_11_12_062921) do
+
+  create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "year_month", null: false
+    t.bigint "teachers_id", null: false
+    t.bigint "students_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["students_id"], name: "index_classrooms_on_students_id"
+    t.index ["teachers_id"], name: "index_classrooms_on_teachers_id"
+  end
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "student_number", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_h", null: false
-    t.string "first_name_h", null: false
+    t.string "name", null: false
+    t.string "name_k", null: false
     t.string "nickname", null: false
+    t.string "image", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.date "birthday", null: false
@@ -36,8 +46,9 @@ ActiveRecord::Schema.define(version: 2020_11_12_055209) do
     t.integer "status_id", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
-    t.string "last_name_h", null: false
-    t.string "first_name_h", null: false
+    t.string "last_name_k", null: false
+    t.string "first_name_k", null: false
+    t.string "image", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false

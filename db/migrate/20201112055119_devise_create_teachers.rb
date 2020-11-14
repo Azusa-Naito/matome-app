@@ -8,8 +8,9 @@ class DeviseCreateTeachers < ActiveRecord::Migration[6.0]
       t.integer :status_id,          null: false
       t.string  :last_name,          null: false
       t.string  :first_name,         null: false
-      t.string  :last_name_h,        null: false
-      t.string  :first_name_h,       null: false
+      t.string  :last_name_k,        null: false
+      t.string  :first_name_k,       null: false
+      t.string  :image,              null: false
       t.string  :email,              null: false, default: ""
       t.string  :encrypted_password, null: false, default: ""
       t.string  :nickname,           null: false
