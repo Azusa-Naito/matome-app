@@ -3,6 +3,9 @@ class Student < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  has_many :classroom_students
+  has_many :classrooms, through: :classroom_students
+
   with_options presence: true do
     validates :student_number
     validates :name, format: {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/}

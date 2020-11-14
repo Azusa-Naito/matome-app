@@ -3,6 +3,9 @@ class Teacher < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  has_many :classroom_teachers
+  has_many :classrooms, through: :classroom_teachers
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
   
