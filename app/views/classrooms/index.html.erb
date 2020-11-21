@@ -36,27 +36,28 @@
     <li class="header-li"><%= link_to 'トップページ', root_path, method: :get, class: "root" %></li>
   <% end %>
 
-
-<%# ログイン講師担当クラスルームの表示 %>
-  <h4>担当クラス一覧</h4>
-  <% current_teacher.classrooms.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-      <% end %>
-    </div>
+<% if teacher_signed_in? %>
+  <%# ログイン講師担当クラスルームの表示 %>
+    <h4>担当クラス一覧</h4>
+    <% current_teacher.classrooms.each do |classroom| %>
+      <div class='classroom'>
+        <%= link_to classroom_path(classroom.id) do %>
+          <%= classroom.name %>
+        <% end %>
+      </div>
+    <% end %>
+  <%# /ログイン講師担当クラスルームの表示 %>
+    <h4>クラス一覧</h4>
+    <%# 全てのクラスルームの表示 %>
+    <% @classrooms.each do |classroom| %>
+      <div class='classroom'>
+        <%= link_to classroom_path(classroom.id) do %>
+          <%= classroom.name %>
+        <% end %>
+      </div>
+    <% end %>
+    <%# /全てのクラスルームの表示 %>
   <% end %>
-<%# /ログイン講師担当クラスルームの表示 %>
-  <h4>クラス一覧</h4>
-  <%# 全てのクラスルームの表示 %>
-  <% @classrooms.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-      <% end %>
-    </div>
-  <% end %>
-  <%# /全てのクラスルームの表示 %>
 </ul>
 
 
