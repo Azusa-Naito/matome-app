@@ -1,0 +1,89 @@
+<div class='chat-room-form'>
+  <h1>新規クラスルーム</h1>
+  <%=form_with model: @classroom, local: true do |f|%>
+<%# エラー文 %>
+<%= render 'shared/error_messages', model: f.object %>
+
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :クラス名, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'クラス名を入力してください'%>
+      </div>
+    </div>
+    <%# 学期 %>
+    <div class='chat-room-form__field'>
+      <div class='form-text-wrap'>
+        <label class="form-text">学期</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <div class='input-birth-wrap'>
+        <%= raw sprintf(f.date_select(:year_month, use_month_numbers: true, discard_day: true, start_year: Time.now.year - 5, end_year:Time.now.year, date_separator:'%s'),'年') + '月' %>
+      </div>
+    </div>
+    <%# 学期 %>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <label class='chat-room-form__label' for='chat_room_クラスメンバー'>クラスメンバー</label>
+      </div>
+      <%# 講師 %>
+      <div class='teacher-select'>
+        <%# cocoonの追加ボタン %>
+        <div class="links">
+          <%= link_to_add_association "追加", f, :classroom_teachers,
+            class: 'add_fields',
+            id: 'add-btn',
+            data: {
+              association_insertion_node: '#teacher-insertion-point',
+              association_insertion_method: 'after'
+            }
+          %>
+        </div>
+        <div class='teacher-in-classroom'>
+          <%# 追加ボタンを押した時に追加される内容 %>
+          <div class='add-select-teacher'>
+            <%= f.fields_for :classroom_teachers do |f| %>
+              <%= render "classroom_teacher_fields", f: f %>
+            <% end %>
+          </div>
+          <%# //追加されたものが入る場所 %>
+          <div id="teacher-insertion-point"></div>
+        </div>
+      </div>
+      <%# /講師 %>
+      <%# 学生 %>
+      <div class='student-select'>
+        <%# cocoonの追加ボタン %>
+        <div class="links">
+          <%= link_to_add_association "追加", f, :classroom_students,
+            class: 'add_fields',
+            id: 'add-btn',
+            data: {
+              association_insertion_node: '#student-insertion-point',
+              association_insertion_method: 'after'
+            }
+          %>
+        </div>
+        <div class='student-in-classroom'>
+          <%# 追加ボタンを押した時に追加される内容 %>
+          <div class='add-select-student'>
+            <%= f.fields_for :classroom_students do |f| %>
+              <%= render "classroom_student_fields", f: f %>
+            <% end %>
+          </div>
+          <%# //追加されたものが入る場所 %>
+          <div id="student-insertion-point"></div>
+        </div>
+      </div>
+      <%# /学生 %>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'></div>
+      <div class='chat-room-form__field--right'>
+        <%= f.submit class: 'chat-room-form__action-btn'%>
+      </div>
+    </div>
+  <% end %>
+</div>
+

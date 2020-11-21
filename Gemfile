@@ -54,3 +54,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'carrierwave', '~> 2.0'
+gem 'active_hash'
+gem 'jquery-rails'
+gem 'cocoon'
+gem 'pry-rails'

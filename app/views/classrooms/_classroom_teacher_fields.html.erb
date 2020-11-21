@@ -1,0 +1,9 @@
+<div class='nested-fields'>
+  <div class='teacher-in-classroom'>
+    <%= f.collection_select :teacher_id, Teacher.all, :id, :nickname, include_blank: "講師を選択して下さい" %>
+  </div>
+  <div class='delete-btn'>
+    <!-- 削除ボタン -->
+    <%= link_to_remove_association "削除", f %>
+  </div>
+</div>
