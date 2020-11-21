@@ -4,6 +4,61 @@
 
 
 
+<p><%= link_to "新しいクラスを作る", new_classroom_path %></p>
+
+
+<ul class="header-ul">
+  <%# 学生ログイン時のヘッダー %>
+  <% if student_signed_in? %>
+    <li class="header-li">
+    <%#= link_to student_path(current_student.id) do %>
+      <div class="user-box">
+        <div>
+          <%= image_tag current_student.image.url, class: "user-image" %>
+        </div>
+        <div class="user-nickname"><%= current_student.nickname %></div>
+      </div>
+    </li>
+    <div>
+    <%= link_to 'ログアウト', destroy_student_session_path, method: :delete, class: "logout" %>
+    </div>
+  <%# 学生ログイン時のヘッダー %>
+  <%# 先生ログイン時のヘッダー %>
+  <% elsif teacher_signed_in? %>
+    <li class="header-li">
+        <%= image_tag current_teacher.image.url, class: "user-image" %>
+      <div class="user-nickname"><%= current_teacher.nickname %></div>
+    <%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete, class: "logout" %>
+  <%# 先生ログイン時のヘッダー %>
+  <%# ゲストのヘッダー %>
+  <% else %>
+  <%# ゲストのヘッダー %>
+    <li class="header-li"><%= link_to 'トップページ', root_path, method: :get, class: "root" %></li>
+  <% end %>
+
+
+<%# ログイン講師担当クラスルームの表示 %>
+  <h4>担当クラス一覧</h4>
+  <% current_teacher.classrooms.each do |classroom| %>
+    <div class='classroom'>
+      <%= link_to classroom_path(classroom.id) do %>
+        <%= classroom.name %>
+      <% end %>
+    </div>
+  <% end %>
+<%# /ログイン講師担当クラスルームの表示 %>
+  <h4>クラス一覧</h4>
+  <%# 全てのクラスルームの表示 %>
+  <% @classrooms.each do |classroom| %>
+    <div class='classroom'>
+      <%= link_to classroom_path(classroom.id) do %>
+        <%= classroom.name %>
+      <% end %>
+    </div>
+  <% end %>
+  <%# /全てのクラスルームの表示 %>
+</ul>
+
 
 
 
