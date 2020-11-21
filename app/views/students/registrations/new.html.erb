@@ -1,7 +1,9 @@
 <h2>Students Sign up</h2>
 
+
 <%#-------------------------------------------------------%>
 <%= form_with model: @student, url: student_registration_path, class: 'registration-main', local: true do |f| %>
+<%= render 'devise/shared/error_messages', model: f.object %>
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
@@ -9,7 +11,8 @@
     </h1>
   </div>
 
-  <%# render 'shared/error_messages', model: f.object %>
+  <%# エラー文 %>
+  <%= render 'shared/error_messages', model: f.object %>
   
   <%# 名前 %>
   <%# 学籍番号 %>
