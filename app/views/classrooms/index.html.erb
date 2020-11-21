@@ -37,7 +37,17 @@
   <% end %>
 
 <% if teacher_signed_in? %>
-  <%# ログイン講師担当クラスルームの表示 %>
+  <%# 担任クラスの表示 %>
+  <h4>担任クラス一覧</h4>
+  <% @classrooms_hr.each do |classroom| %>
+    <div class='classroom'>
+      <%= link_to classroom_path(classroom.id) do %>
+        <%= classroom.name %>
+      <% end %>
+    </div>
+  <% end %>
+  <%# /担任クラスの表示 %>
+  <%# 担当クラスの表示 %>
     <h4>担当クラス一覧</h4>
     <% current_teacher.classrooms.each do |classroom| %>
       <div class='classroom'>
@@ -46,7 +56,7 @@
         <% end %>
       </div>
     <% end %>
-  <%# /ログイン講師担当クラスルームの表示 %>
+  <%# /担当クラスの表示 %>
     <h4>クラス一覧</h4>
     <%# 全てのクラスルームの表示 %>
     <% @classrooms.each do |classroom| %>
