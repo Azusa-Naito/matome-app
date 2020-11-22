@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_092337) do
+ActiveRecord::Schema.define(version: 2020_11_22_053840) do
 
   create_table "classroom_students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "student_id"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2020_11_14_092337) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
+  end
+
+  create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "genre_id", null: false
+    t.text "content", null: false
+    t.bigint "teacher_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_information_on_teacher_id"
   end
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -82,4 +92,5 @@ ActiveRecord::Schema.define(version: 2020_11_14_092337) do
   add_foreign_key "classroom_teachers", "classrooms"
   add_foreign_key "classroom_teachers", "teachers"
   add_foreign_key "classrooms", "teachers"
+  add_foreign_key "information", "teachers"
 end
