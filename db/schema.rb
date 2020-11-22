@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 2020_11_14_092337) do
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.date "year_month", null: false
+    t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,4 +81,5 @@ ActiveRecord::Schema.define(version: 2020_11_14_092337) do
   add_foreign_key "classroom_students", "students"
   add_foreign_key "classroom_teachers", "classrooms"
   add_foreign_key "classroom_teachers", "teachers"
+  add_foreign_key "classrooms", "teachers"
 end

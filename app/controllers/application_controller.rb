@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:employee_number, :status_id, :last_name, :first_name, :last_name_k, :first_name_k, :image, :nickname, :student_number, :name, :name_k, :birthday])
+    if resource_class == Teacher
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:employee_number, :status_id, :last_name, :first_name, :last_name_k, :first_name_k, :image, :nickname])
+    elsif resource_class == Student
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:image, :nickname, :student_number, :name, :name_k, :birthday])
+    else
+      super
+    end
   end
 end
 
