@@ -1,12 +1,3 @@
-
-<p><%= link_to "講師はこちら", new_teacher_session_path %></p>
-<p><%= link_to "学生はこちら", new_student_session_path %></p>
-
-
-
-<p><%= link_to "新しいクラスを作る", new_classroom_path %></p>
-
-
 <ul class="header-ul">
   <%# 学生ログイン時のヘッダー %>
   <% if student_signed_in? %>
@@ -33,10 +24,15 @@
   <%# ゲストのヘッダー %>
   <% else %>
   <%# ゲストのヘッダー %>
-    <li class="header-li"><%= link_to 'トップページ', root_path, method: :get, class: "root" %></li>
+  <p><%= link_to "講師はこちら", new_teacher_session_path %></p>
+  <p><%= link_to "学生はこちら", new_student_session_path %></p>
+    <%# <li class="header-li"><%= link_to 'トップページ', root_path, method: :get, class: "root" % ></li> %>
   <% end %>
 
 <% if teacher_signed_in? %>
+  <%# クラスルーム作成 %>
+  <p><%= link_to "新しいクラスを作る", new_classroom_path %></p>
+  <%# /クラスルーム作成 %>
   <%# 担任クラスの表示 %>
   <h4>担任クラス一覧</h4>
   <% @classrooms_hr.each do |classroom| %>
