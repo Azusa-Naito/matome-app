@@ -2,9 +2,14 @@
 
 <% @informations.each do |information| %>
   <div class='information'>
-    <% link_to information_path(information.id) do %>
-      <%= information.title %>
-      <%= information.content %>
+    <%= link_to information_path(information.id) do %>
+      <div class='infomation'>
+        <p><%= information.title %></p>
+        <p><%= information.genre.name %></p>
+        <p><%= information.content %></p>
+        <p><%= information.title %></p>
+        <p><%= information.teacher.nickname %></p>
+        </div>
     <% end %>
   </div>
 <% end %>
