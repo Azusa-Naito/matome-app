@@ -1,5 +1,11 @@
 <h1>informations#show</h1>
 
-<%= @information.title %>
-<%= @information.content %>
-<%= @information.created_at %>
+<div class='infomation'>
+  <p>タイトル：<%= @information.title %></p>
+  <p>ジャンル：<%= @information.genre.name %></p>
+  <div class='info-content'>
+    <p>内容：<%= @information.content %></p>
+  </div>
+  <p>先生：<%= @information.teacher.nickname %>先生</p>
+  <%= @information.created_at %>
+</div>
