@@ -1,7 +1,13 @@
 <h1>classroom#show</h1>
 <%# カレンダー %>
-<%= month_calendar do |date, blogs| %>
-  <%= date.day %>
+<% @informations.each do |information| %>
+  <%= information.genre.name %>
+  <%= information.title %>
+  <%= information.content %>
+<% end %>
 
+<%= month_calendar  do |date| %>
+  <%= date.day %>
+  
 <% end %>
 <%# /カレンダー %>

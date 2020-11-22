@@ -1,0 +1,10 @@
+<h1>informations#index</h1>
+
+<% @informations.each do |information| %>
+  <div class='information'>
+    <% link_to information_path(information.id) do %>
+      <%= information.title %>
+      <%= information.content %>
+    <% end %>
+  </div>
+<% end %>
