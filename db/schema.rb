@@ -51,10 +51,12 @@ ActiveRecord::Schema.define(version: 2020_11_23_084007) do
 
   create_table "inquiries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
+    t.bigint "information_id"
     t.bigint "teacher_id"
     t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["information_id"], name: "index_inquiries_on_information_id"
     t.index ["student_id"], name: "index_inquiries_on_student_id"
     t.index ["teacher_id"], name: "index_inquiries_on_teacher_id"
   end
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_084007) do
   add_foreign_key "classroom_teachers", "teachers"
   add_foreign_key "classrooms", "teachers"
   add_foreign_key "information", "teachers"
+  add_foreign_key "inquiries", "information"
   add_foreign_key "inquiries", "students"
   add_foreign_key "inquiries", "teachers"
 end
