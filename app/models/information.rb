@@ -1,6 +1,7 @@
 class Information < ApplicationRecord
   # アソシエーション
   belongs_to :teacher
+  has_many :inquiries
   # ActiveHashのメソッド
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :genre
