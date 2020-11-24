@@ -23,6 +23,7 @@ class ClassroomsController < ApplicationController
   end
 
   def show
+    @informations = Information.all
   end
 
   private

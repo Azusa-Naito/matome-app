@@ -11,10 +11,11 @@ class Student < ApplicationRecord
   with_options presence: true do
     validates :student_number
     validates :name
-    validates :name_k, format: {with: /\A[ァ-ヶー－]+\z/}
+    validates :name_k
     validates :nickname
     validates :image
     validates :birthday
   end
 
 end
+

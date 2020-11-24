@@ -1,0 +1,17 @@
+<h1>informations#index</h1>
+
+<% @informations.each do |information| %>
+  <div class='information'>
+    <%= link_to information_path(information.id) do %>
+      <div class='infomation'>
+        <p><%= information.title %></p>
+        <p><%= information.genre.name %></p>
+        <div class='info-content'>
+          <p><%= information.content %></p>
+        </div>
+        <p><%= information.title %></p>
+        <p><%= information.teacher.nickname %></p>
+        </div>
+    <% end %>
+  </div>
+<% end %>

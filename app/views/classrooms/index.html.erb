@@ -33,6 +33,10 @@
   <%# クラスルーム作成 %>
   <p><%= link_to "新しいクラスを作る", new_classroom_path %></p>
   <%# /クラスルーム作成 %>
+  <%# 情報投稿 %>
+  <p><%= link_to "新しいインフォメーションを作る", new_information_path %></p>
+  <p><%= link_to "インフォメーション一覧を見る", informations_path %></p>
+  <%# /情報投稿 %>
   <%# 担任クラスの表示 %>
   <h4>担任クラス一覧</h4>
   <% @classrooms_hr.each do |classroom| %>

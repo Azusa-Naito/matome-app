@@ -5,7 +5,8 @@ class Teacher < ApplicationRecord
   # アソシエーション
   has_many :classroom_teachers
   has_many :classrooms, through: :classroom_teachers
-  # ActiveHashの記述
+  has_many :informations
+  # ActiveHashのメソッド
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
   # carrierwaveの記述

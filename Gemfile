@@ -59,3 +59,8 @@ gem 'active_hash'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'pry-rails'
+gem 'simple_calendar', '~> 2.0'
+# seedsでも使用
+gem 'faker'
+gem 'gimei'
+# seedsでも使用
