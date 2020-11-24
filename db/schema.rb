@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_084007) do
+ActiveRecord::Schema.define(version: 2020_11_24_081758) do
+
+  create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "classroom_id"
+    t.bigint "teacher_id"
+    t.bigint "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_chats_on_classroom_id"
+    t.index ["student_id"], name: "index_chats_on_student_id"
+    t.index ["teacher_id"], name: "index_chats_on_teacher_id"
+  end
 
   create_table "classroom_students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "student_id"
@@ -99,6 +111,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_084007) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "classrooms"
+  add_foreign_key "chats", "students"
+  add_foreign_key "chats", "teachers"
   add_foreign_key "classroom_students", "classrooms"
   add_foreign_key "classroom_students", "students"
   add_foreign_key "classroom_teachers", "classrooms"
