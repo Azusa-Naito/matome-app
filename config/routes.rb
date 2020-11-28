@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "classrooms#index"
   resources :classrooms, only: [:index, :new, :create, :show] do
     resources :chatrooms, only: [:new, :create, :show] do
-      resources :chats, only: [:new, :create]
+      resources :chats, only: [:create]
     end
   end
   resources :informations, only: [:index, :new, :create, :show] do
