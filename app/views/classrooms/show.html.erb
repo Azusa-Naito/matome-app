@@ -1,4 +1,5 @@
 <h1>classroom#show</h1>
+<h2><%= @classroom.name %>クラス</h2>
 <%# カレンダー %>
 <% @informations.each do |information| %>
   <%= information.genre.name %>
@@ -11,3 +12,14 @@
   
 <% end %>
 <%# /カレンダー %>
+
+<%# 学生チャット一覧(担任にだけ表示される) %>
+<% if @classroom.teacher_id == current_teacher.id %>
+  <div class='right-bar'>
+    <% @classroom.students.each do |student| %>
+        <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post %>
+    <% end %>
+  </div>
+<% end %>
+<%# /学生チャット一覧(担任にだけ表示される) %>
+
