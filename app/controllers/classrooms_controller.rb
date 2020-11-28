@@ -1,8 +1,13 @@
 class ClassroomsController < ApplicationController
   def index
-    @classrooms = Classroom.all
     if teacher_signed_in?
+      # 担任クラス
       @classrooms_hr = Classroom.where(teacher_id: current_teacher.id)
+      # 授業だけのクラス
+      @classrooms_cl = current_teacher.classrooms
+      @classrooms = Classroom.all
+    elsif student_signed_in?
+      @classrooms_st = current_student.classrooms
     end
   end
 
@@ -23,7 +28,9 @@ class ClassroomsController < ApplicationController
   end
 
   def show
+    @classroom = Classroom.find(params[:id])
     @informations = Information.all
+    @chatroom = Chatroom.new
   end
 
   private

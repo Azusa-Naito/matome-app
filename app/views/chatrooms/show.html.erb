@@ -1,0 +1,49 @@
+<h1>Chatrooms#show</h1>
+
+<% if teacher_signed_in? %>
+  <h2><%= @student.nickname %>さんとのチャット</h2>
+<% elsif student_signed_in? %>
+  <h2><%= @teacher.nickname %>先生とのチャット</h2>
+<% end %>
+<%# チャット一覧表示 %>
+<% @chats.each do |chat| %>
+  <p><%= chat.text %></p>
+<% end %>
+<%# /チャット一覧表示 %>
+
+<%# チャット投稿フォーム %>
+  <div class='chat-room-form'>
+    <%= form_with url: classroom_chatroom_chats_path(@classroom.id, @chatroom.id), model: @chat, method: :post, local: true do |f| %>
+      <%# エラー文 %>
+      <%#= render 'shared/error_messages', model: f.object %>
+
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'>
+          <%= f.label :テキスト, class: 'chat-room-form__label'%>
+        </div>
+        <div class='chat-room-form__field--right'>
+          <%= f.text_area :text, class: 'chat__room_name chat-room-form__input', placeholder: '質問を入力してください'%>
+        </div>
+      </div>
+      <%# 講師→1, 学生→2 %>
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'></div>
+        <div class='chat-room-form__field--right'>
+          <% if teacher_signed_in? %>
+            <%= f.hidden_field :judgement, value: 1, class: 'chat-room-form__action-btn'%>
+          <% elsif student_signed_in? %>
+            <%= f.hidden_field :judgement, value: 2, class: 'chat-room-form__action-btn'%>
+          <% end %>
+        </div>
+      </div>
+      <%# 講師→1, 学生→2 %>
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'></div>
+        <div class='chat-room-form__field--right'>
+          <%= f.submit "送信", class: 'chat-room-form__action-btn'%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%# /チャット投稿フォーム %>

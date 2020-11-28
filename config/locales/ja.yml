@@ -1,0 +1,28 @@
+ja:
+  date:
+    formats:
+      default: '%Y/%m/%d'
+      long: '%Y年%m月%d日(%a)'
+      short: '%y-%m'
+  activerecord:
+    attributes:
+      teacher:
+        email: メールアドレス
+        password: パスワード
+        employee_number: 社員番号
+        status: 雇用形態
+        last_name: 姓
+        first_name: 名
+        last_name_k: 姓（カタカナ）
+        first_name_k: 名（カタカナ）
+        image: 画像
+        nickname: ニックネーム
+      student:
+        email: メールアドレス
+        password: パスワード
+        student_number: 学籍番号
+        name: 名前（alphabet）
+        name_k: 名前（カタカナ）
+        image: 画像
+        nickname: ニックネーム
+        birthday: 誕生日

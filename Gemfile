@@ -63,4 +63,5 @@ gem 'simple_calendar', '~> 2.0'
 # seedsでも使用
 gem 'faker'
 gem 'gimei'
-# seedsでも使用
+# メッセージの日本語化
+gem 'rails-i18n'
