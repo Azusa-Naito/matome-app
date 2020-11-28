@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # before_action :configure_permitted_parameters, if: :devise_controller?
+  # 先生がログインしてたら学生のログインページには行けない
+
+  # 学生がログインしてたら先生のログインページには行けない
+
   private
 
   def configure_permitted_parameters
