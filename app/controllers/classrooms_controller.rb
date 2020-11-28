@@ -23,7 +23,9 @@ class ClassroomsController < ApplicationController
   end
 
   def show
+    @classroom = Classroom.find(params[:id])
     @informations = Information.all
+    @chatroom = Chatroom.new
   end
 
   private
