@@ -14,12 +14,14 @@
 <%# /カレンダー %>
 
 <%# 学生チャット一覧(担任にだけ表示される) %>
-<% if @classroom.teacher_id == current_teacher.id %>
-  <div class='right-bar'>
-    <% @classroom.students.each do |student| %>
-        <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post %>
-    <% end %>
-  </div>
+<% if teacher_signed_in? %>
+  <% if @classroom.teacher_id == current_teacher.id %>
+    <div class='right-bar'>
+      <% @classroom.students.each do |student| %>
+          <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 <%# /学生チャット一覧(担任にだけ表示される) %>
 
