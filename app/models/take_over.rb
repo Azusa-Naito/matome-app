@@ -1,0 +1,2 @@
+class TakeOver < ApplicationRecord
+end

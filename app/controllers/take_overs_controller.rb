@@ -1,0 +1,2 @@
+class TakeOversController < ApplicationController
+end
