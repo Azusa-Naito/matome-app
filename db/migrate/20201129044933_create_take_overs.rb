@@ -5,6 +5,7 @@ class CreateTakeOvers < ActiveRecord::Migration[6.0]
       t.text       :content
       t.text       :detail
       t.text       :appearance
+      t.references :classroom,  foreign_key: true
       t.references :teacher,    foreign_key: true
       t.timestamps
     end

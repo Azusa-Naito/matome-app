@@ -104,9 +104,11 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
     t.text "content"
     t.text "detail"
     t.text "appearance"
+    t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_take_overs_on_classroom_id"
     t.index ["teacher_id"], name: "index_take_overs_on_teacher_id"
   end
 
@@ -143,5 +145,6 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
   add_foreign_key "inquiries", "information"
   add_foreign_key "inquiries", "students"
   add_foreign_key "inquiries", "teachers"
+  add_foreign_key "take_overs", "classrooms"
   add_foreign_key "take_overs", "teachers"
 end
