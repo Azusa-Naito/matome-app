@@ -15,7 +15,6 @@ class ChatroomsController < ApplicationController
     # なんでかわからんけど、@chatroom.idが複数形で、idsになる
       redirect_to classroom_chatroom_path(@classroom.id, @chatroom.ids)
     else #学生とのチャットルームが存在しなかったら
-      # binding.pry
       @chatroom = Chatroom.new(chatroom_params)
       if @chatroom.valid?
         @chatroom.save
@@ -41,7 +40,7 @@ class ChatroomsController < ApplicationController
     if teacher_signed_in?
       params.permit().merge(classroom_id: @classroom.id, teacher_id: current_teacher.id, student_id: @student.id)
     elsif student_signed_in?
-      params.require(:chatroom).merge(classroom_id: @classroom.id, teacher_id: @teacher.id, student_id: current_student.id)
+      params.permit().merge(classroom_id: @classroom.id, teacher_id: @teacher.id, student_id: current_student.id)
     end
   end
 end
