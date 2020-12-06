@@ -6,6 +6,7 @@ class Teacher < ApplicationRecord
   has_many :classroom_teachers
   has_many :classrooms, through: :classroom_teachers
   has_many :informations
+  has_many :take_overs
   # ActiveHashのメソッド
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
