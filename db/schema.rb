@@ -101,9 +101,9 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
 
   create_table "take_overs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
-    t.text "content"
-    t.text "detail"
-    t.text "appearance"
+    t.text "content", null: false
+    t.text "detail", null: false
+    t.text "appearance", null: false
     t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
