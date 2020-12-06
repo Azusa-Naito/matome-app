@@ -14,3 +14,8 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  background-color: #EDF2FB;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
+}
