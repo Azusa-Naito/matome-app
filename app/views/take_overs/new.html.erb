@@ -1,0 +1,31 @@
+<h1>take_overs#new</h1>
+
+<%= form_with url: classroom_take_overs_path, model: @take_over, local: true do |f| %>
+
+  <div class="time">
+    <%= f.label :日にち %>
+    <%= f.date_select :start_time %>
+  </div>
+
+  <div class="content">
+    <%= f.label :授業範囲 %>
+    <%= f.text_area :content %>
+  </div>
+
+
+  <div class="detail">
+    <%= f.label :授業内容 %>
+    <%= f.text_area :detail %>
+  </div>
+
+  <div class="appearance">
+    <%= f.label :学生の様子 %>
+    <%= f.text_area :appearance %>
+  </div>
+
+
+  <div class="submit">
+    <%= f.submit %>
+  </div>
+
+<% end %>
