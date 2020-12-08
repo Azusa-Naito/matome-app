@@ -18,8 +18,7 @@ class TakeOversController < ApplicationController
   end
 
   def show
-    # binding.pry
-    @take_over = TakeOver.find(params[:classroom_id])
+    @take_over = TakeOver.find(params[:id])
   end
 
   private

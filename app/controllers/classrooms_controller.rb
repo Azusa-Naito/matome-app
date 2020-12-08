@@ -31,7 +31,8 @@ class ClassroomsController < ApplicationController
 
   def show
     @classroom = Classroom.find(params[:id])
-    @informations = Information.all
+    # @informations = Information.all.page(1).total_pages
+    @informations = Information.all.order(id: "DESC").page(params[:page]).per(5)
     @chatroom = Chatroom.new
     @take_over = TakeOver.where(classroom_id: @classroom.id)
   end
