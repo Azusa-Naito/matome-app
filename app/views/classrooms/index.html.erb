@@ -47,31 +47,19 @@
   <%# 担任クラスの表示 %>
   <h4>担任クラス一覧</h4>
   <% @classrooms_hr.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-      <% end %>
-    </div>
+    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
   <% end %>
   <%# /担任クラスの表示 %>
   <%# 担当クラスの表示 %>
   <h4>担当クラス一覧</h4>
   <% @classrooms_cl.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-      <% end %>
-    </div>
+    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
   <% end %>
 <%# /担当クラスの表示 %>
   <h4>クラス一覧</h4>
   <%# 全てのクラスルームの表示 %>
   <% @classrooms.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-      <% end %>
-    </div>
+    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
   <% end %>
   <%# /全てのクラスルームの表示 %>
 <% end %>
@@ -80,12 +68,7 @@
 <%# 学生表示内容 %>
 <% if student_signed_in? %>
   <% @classrooms_st.each do |classroom| %>
-    <div class='classroom'>
-      <%= link_to classroom_path(classroom.id) do %>
-        <%= classroom.name %>
-        <%= l classroom.year_month, format: :short %>
-      <% end %>
-    </div>
+    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
   <% end %>
 <% end %>
 <%# /学生表示内容 %>
