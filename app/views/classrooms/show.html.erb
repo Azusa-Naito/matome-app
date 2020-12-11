@@ -1,31 +1,9 @@
-<%# 管理バー(担任にだけ表示される) %>
+<%# サイドバー %>
 <% if teacher_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
-      <a class="navbar-brand js-scroll-trigger" href="#">
-          <span class="d-none d-lg-block"><%= image_tag current_teacher.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
-      </a>
-          <div class="d-block"><%= current_teacher.nickname %></div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "クラス作成", new_classroom_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "インフォメーション作成", new_information_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "引継ぎノート作成", new_classroom_take_over_path(@classroom.id), class: "nav-link" %></li>
-              <% if @classroom.teacher_id == current_teacher.id %>
-              <p>学生チャット一覧</p>
-                <% @classroom.students.each do |student| %>
-                  <li class="nav-item">
-                    <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post, class: "nav-link" %>
-                  </li>
-                <% end %>
-              <% end %>
-          </ul>
-      </div>
-  </nav>
+  <%= render "shared/teacher_bar" %>
+<% else %>
+  <%= render "shared/student_bar" %>
 <% end %>
-<%# 管理バー(担任にだけ表示される) %>
 
 <h2><%= @classroom.name %>クラス</h2>
 <%# 情報一覧 %>
