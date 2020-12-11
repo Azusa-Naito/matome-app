@@ -1,0 +1,42 @@
+/* simple_calendarのカスタマイズ */
+.simple-calendar {
+  .day {}
+
+  .wday-0 {
+    background-color: #ffcccc;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+    background-color: #d9e6ff; 
+  }
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+
+  .tr{
+    text-align: center;
+  }
+  .th{
+    text-align: center;
+  }
+}
+
+.calendar-heading{
+  height: 30px;
+  width: 200px;
+  margin: 0 auto;
+  font-size: 25px;
+}

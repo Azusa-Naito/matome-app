@@ -1,0 +1,8 @@
+<div class='a-box'>
+      <%= link_to classroom_path(classroom.id) do %>
+        <div class="genre-icon d-inline">
+          <%= l classroom.year_month, format: :short %>
+        </div>
+        <%= classroom.name %>
+      <% end %>
+    </div>

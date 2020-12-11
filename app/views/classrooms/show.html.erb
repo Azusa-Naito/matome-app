@@ -1,27 +1,36 @@
-<h1>classroom#show</h1>
-<h2><%= @classroom.name %>クラス</h2>
-<%# カレンダー %>
-<% @informations.each do |information| %>
-  <%= information.genre.name %>
-  <%= information.title %>
-  <%= information.content %>
+<%# サイドバー %>
+<% if teacher_signed_in? %>
+  <%= render "shared/teacher_bar" %>
+<% else %>
+  <%= render "shared/student_bar" %>
 <% end %>
 
-<%= month_calendar  do |date| %>
+<h2><%= @classroom.name %>クラス</h2>
+<%# 情報一覧 %>
+<h5>お知らせ</h5>
+<ul class="list-unstyled">
+  <% @informations.each do |information| %>
+    <li class="a-box">
+      <%= link_to information_path(information.id) do %>
+        <div class="genre-icon d-inline">
+          <%= information.genre.name %>
+        </div>
+        <%= information.title %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<%= paginate @informations, window: 5 %>
+<%# /情報一覧 %>
+
+<%# カレンダー %>
+<%= month_calendar events: @take_over do |date, take_overs| %>
   <%= date.day %>
   
-<% end %>
-<%# /カレンダー %>
-
-<%# 学生チャット一覧(担任にだけ表示される) %>
-<% if teacher_signed_in? %>
-  <% if @classroom.teacher_id == current_teacher.id %>
-    <div class='right-bar'>
-      <% @classroom.students.each do |student| %>
-          <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post %>
-      <% end %>
+  <% take_overs.each do |take_over| %>
+    <div>
+      <%= link_to "引継ぎ", classroom_take_over_path(@classroom.id, take_over.id) %>
     </div>
   <% end %>
 <% end %>
-<%# /学生チャット一覧(担任にだけ表示される) %>
-
+<%# /カレンダー %>

@@ -1,4 +1,6 @@
 class ClassroomsController < ApplicationController
+  # 学生はnewページ参照不可
+  before_action :authenticate_teacher!, only: [:new, :create]
   def index
     if teacher_signed_in?
       # 担任クラス
@@ -29,8 +31,10 @@ class ClassroomsController < ApplicationController
 
   def show
     @classroom = Classroom.find(params[:id])
-    @informations = Information.all
+    # @informations = Information.all.page(1).total_pages
+    @informations = Information.all.order(id: "DESC").page(params[:page]).per(5)
     @chatroom = Chatroom.new
+    @take_over = TakeOver.where(classroom_id: @classroom.id)
   end
 
   private

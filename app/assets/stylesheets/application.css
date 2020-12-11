@@ -14,3 +14,270 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+  /* background-color: #EDF2FB; */
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.genre-icon{
+  color: #EDF2FB;
+  background-color: #e59367;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0px 5px;
+}
+
+.genre-icon:hover{
+  background-color: #fff;
+  color: #e59367;
+}
+.a-box{
+  height: 30px;
+  font-weight: bold;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #7796CB;
+  font-weight: bold;
+}
+
+.box label{
+	display: block;
+	padding: 10px;
+	margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.box input[type="checkbox"].on-off,
+.box input[type="checkbox"].on-off +div{
+	display: none;
+}
+
+.box input[type="checkbox"].on-off:checked +div{
+  display: block;
+}
+
+.box div{
+	margin: 0 0 20px;
+}
+
+.box_label{
+  background-image: url("../images/arrow_left.png");
+  background-size: 15px;
+  display: inline;
+}
+
+/* newページ */
+
+.form-label{
+  font-weight: bold;
+}
+/* 必須マーク */
+.indispensable{
+  background: #ea352d;
+  margin-left: 8px;
+  padding: 3px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text-box{
+  width: 100%;
+  padding: 16px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+
+.input-flame{
+  background-color: #FFF;
+  width: 70vw;
+  min-width: 450px;
+  padding: 10vh 15vw;
+}
+
+.select-box{
+  display: block;
+}
+/* チャット枠 */
+/* .chat-group{
+  display: inline;
+  display: flex;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 0;
+} */
+/* 一番大きいとこ */
+.form {
+  background-color: #DDDDDD;
+  height: 140px;
+  padding: 20px 40px;
+  display: flex;
+  box-sizing: border-box;
+}
+.form-input {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+}
+.form-message {
+  border-radius: 5px;
+  border: none;
+  height: 100px;
+  width: 100%;
+  padding-left: 10px;
+}
+.form-submit {
+  background-color: #38AEF0;
+  border: none;
+  color: white;
+  font-size: 16px;
+  height: 50px;
+  margin-left: 15px;
+  padding: 0 20px;
+  border-radius: 5px;
+}
+
+.btn-contents{
+  margin-top: 20px;
+  display: inline;
+}
+/* もどるボタン */
+.back-btn {
+  /* background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px 35%;
+  text-decoration: none; */
+
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #aaa;
+  border-color: #aaa;
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 100px;
+}
+
+/* Chatrooms#show */
+.chat-flame{
+  background-color: #F0F8FF;
+  min-width: 450px;
+  padding: 10vh 5vw 0 5vw;
+}
+
+.chat-display1{
+  border: lightblue solid 1px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  margin-right: 50px;
+}
+
+/* chatrooms#show ここから */
+.line-bc {
+  padding: 20px 10px;
+  max-width: 450px;
+  margin: 15px auto;
+  text-align: right;
+  font-size: 14px;
+  background: #7da4cd;
+
+}
+
+/*以下、②左側のコメント*/
+.balloon6 {
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.balloon6 .faceicon {
+  float: left;
+  margin-right: -50px;
+  width: 40px;
+}
+
+.balloon6 .faceicon img{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.balloon6 .chatting {
+  width: 100%;
+  text-align: left;
+}
+.says {
+  display: inline-block;
+  position: relative; 
+  margin: 0 0 0 50px;
+  padding: 10px;
+  max-width: 400px;
+  border-radius: 12px;
+  background: #edf1ee;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 3px; 
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #edf1ee;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.says p {
+  margin: 0;
+  padding: 0;
+}
+
+/*以下、③右側の緑コメント*/
+.mycomment {
+  text-align: right;
+  margin: 10px 0;
+}
+.mycomment p {
+  display: inline-block;
+  position: relative; 
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 400px;
+  border-radius: 12px;
+  background: #30e852;
+  font-size: 15px;
+  text-align: right;
+}
+
+.mycomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px; 
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #30e852;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+/* chatrooms#show ここまで */
+
+/* 学生ドロップダウンメニュー ここから*/
+
+/* 学生ドロップダウンメニュー ここまで*/

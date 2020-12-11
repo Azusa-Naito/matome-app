@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_053519) do
+ActiveRecord::Schema.define(version: 2020_11_29_044933) do
 
   create_table "chatrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "classroom_id"
@@ -99,6 +99,19 @@ ActiveRecord::Schema.define(version: 2020_11_25_053519) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  create_table "take_overs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.text "content", null: false
+    t.text "detail", null: false
+    t.text "appearance", null: false
+    t.bigint "classroom_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_take_overs_on_classroom_id"
+    t.index ["teacher_id"], name: "index_take_overs_on_teacher_id"
+  end
+
   create_table "teachers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "employee_number", null: false
     t.integer "status_id", null: false
@@ -132,4 +145,6 @@ ActiveRecord::Schema.define(version: 2020_11_25_053519) do
   add_foreign_key "inquiries", "information"
   add_foreign_key "inquiries", "students"
   add_foreign_key "inquiries", "teachers"
+  add_foreign_key "take_overs", "classrooms"
+  add_foreign_key "take_overs", "teachers"
 end

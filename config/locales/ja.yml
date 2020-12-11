@@ -1,4 +1,7 @@
 ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
   date:
     formats:
       default: '%Y/%m/%d'
@@ -26,3 +29,15 @@ ja:
         image: 画像
         nickname: ニックネーム
         birthday: 誕生日
+      chat:
+        text: テキスト
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+    attributes:
+      previous: "先月"
+      next: "来月"

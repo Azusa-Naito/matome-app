@@ -65,3 +65,5 @@ gem 'faker'
 gem 'gimei'
 # メッセージの日本語化
 gem 'rails-i18n'
+# ページネーション
+gem 'kaminari'
