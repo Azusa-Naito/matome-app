@@ -1,6 +1,6 @@
 class ClassroomsController < ApplicationController
   # 学生はnewページ参照不可
-  before_action :authenticate_student!, only: [:new, :create]
+  before_action :authenticate_teacher!, only: [:new, :create]
   def index
     if teacher_signed_in?
       # 担任クラス

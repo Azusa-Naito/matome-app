@@ -7,7 +7,6 @@ class ChatroomsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     @student = Student.find(params[:student])
     @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
-    binding.pry
     # 条件分岐
     # 学生のチャットルームが既に存在したら
     if @chatroom.present?
