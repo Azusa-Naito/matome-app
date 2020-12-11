@@ -12,20 +12,19 @@
             <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to "授業記録作成", new_classroom_take_over_path(@classroom.id), class: "nav-link" %></li>
             <%# 担任にのみ表示 %>
+            <li class="nav-item"><%= "学生チャット一覧" %></li>
             <% if @classroom.teacher_id == current_teacher.id %>
-              <div class="box">
-                <label for="inbox1">学生チャット一覧<div class="box_label"><%= image_tag "arrow_down.png", size: '15x15' %></div></label>
-                <input type="checkbox" id="inbox1" class="on-off">
-                <div>
-                  <ul>
-                    <% @classroom.students.each do |student| %>
-                      <li class="nav-item">
-                        <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post, class: "nav-link" %>
-                      </li>
-                    <% end %>
-                  </ul>
+                <%# <div class="box">
+                  <label for="inbox1">学生チャット一覧<div class="box_label"><%= image_tag "arrow_down.png", size: '15x15' % ></div></label>
+                  <input type="checkbox" id="inbox1" class="on-off">
+                  <div>%>
+                      <% @classroom.students.each do |student| %>
+                        <li class="nav-item">
+                          <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post, class: "nav-link" %>
+                        </li>
+                      <% end %>
+                  </div>
                 </div>
-              </div>
             <% end %>
         </ul>
     </div>

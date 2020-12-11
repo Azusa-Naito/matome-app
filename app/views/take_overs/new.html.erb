@@ -1,31 +1,40 @@
-<h1>take_overs#new</h1>
+<div class="input-flame">
+  <h2>授業記録入力</h2>
+  <%= form_with url: classroom_take_overs_path, model: @take_over, local: true do |f| %>
+    <%# エラー文 %>
+    <%= render 'shared/error_messages', model: f.object %>
 
-<%= form_with url: classroom_take_overs_path, model: @take_over, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :start_time, "日にち", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <div class="select-box">
+        <%= f.date_select :start_time %>
+      </div>
+    </div>
 
-  <div class="time">
-    <%= f.label :日にち %>
-    <%= f.date_select :start_time %>
-  </div>
-
-  <div class="content">
-    <%= f.label :授業範囲 %>
-    <%= f.text_area :content %>
-  </div>
-
-
-  <div class="detail">
-    <%= f.label :授業内容 %>
-    <%= f.text_area :detail %>
-  </div>
-
-  <div class="appearance">
-    <%= f.label :学生の様子 %>
-    <%= f.text_area :appearance %>
-  </div>
+    <div class="form-group">
+      <%= f.label :content, "授業範囲", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_area :content, class: "form-control", placeholder: '授業範囲を入力してください' %>
+    </div>
 
 
-  <div class="submit">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :detail, "授業内容", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_area :detail, class: "form-control", placeholder: '授業内容を詳しく入力してください' %>
+    </div>
 
-<% end %>
+    <div class="form-group">
+      <%= f.label :appearance, "学生の様子", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_area :appearance, class: "form-control", placeholder: '学生の様子を入力してください' %>
+    </div>
+
+
+    <div class="submit">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>
