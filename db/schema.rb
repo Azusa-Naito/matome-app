@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_044933) do
+ActiveRecord::Schema.define(version: 2020_12_11_112033) do
 
   create_table "chatrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "classroom_id"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
+  end
+
+  create_table "homeworks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.text "content", null: false
+    t.bigint "classroom_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_homeworks_on_classroom_id"
+    t.index ["teacher_id"], name: "index_homeworks_on_teacher_id"
   end
 
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -141,6 +152,8 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
   add_foreign_key "classroom_teachers", "classrooms"
   add_foreign_key "classroom_teachers", "teachers"
   add_foreign_key "classrooms", "teachers"
+  add_foreign_key "homeworks", "classrooms"
+  add_foreign_key "homeworks", "teachers"
   add_foreign_key "information", "teachers"
   add_foreign_key "inquiries", "information"
   add_foreign_key "inquiries", "students"
