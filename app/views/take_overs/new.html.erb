@@ -18,7 +18,6 @@
       <%= f.text_area :content, class: "form-control", placeholder: '授業範囲を入力してください' %>
     </div>
 
-
     <div class="form-group">
       <%= f.label :detail, "授業内容", class: "form-label" %>
       <span class="indispensable">必須</span>
@@ -31,6 +30,9 @@
       <%= f.text_area :appearance, class: "form-control", placeholder: '学生の様子を入力してください' %>
     </div>
 
+    <div class="form-group">
+      <%= f.hidden_field :judgement, value: 2 %>
+    </div>
 
     <div class="submit">
       <%= f.submit %>
