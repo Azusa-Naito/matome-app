@@ -32,6 +32,8 @@ ja:
         birthday:       "誕生日"
       chat:
         text: "テキスト"
+      homework:
+        content: "宿題"
   views:
     pagination:
       first:    "&laquo; 最初"
