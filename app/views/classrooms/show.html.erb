@@ -24,13 +24,21 @@
 <%# /情報一覧 %>
 
 <%# カレンダー %>
-<%= month_calendar events: @take_over do |date, take_overs| %>
+<%= month_calendar events: @all do |date, all| %>
   <%= date.day %>
-  
-  <% take_overs.each do |take_over| %>
-    <div>
-      <%= link_to "引継ぎ", classroom_take_over_path(@classroom.id, take_over.id) %>
-    </div>
+  <% all.each do |all| %>
+    <%# 授業記録 %>
+    <% if all.judgement == 2 %>
+      <div>
+        <%= link_to "引継ぎ", classroom_take_over_path(@classroom.id, all.id) %>
+      </div>
+    <%#/授業記録 %>
+    <%# 宿題 %>
+    <% elsif all.judgement == 3 %>
+      <div>
+        <%= link_to "宿題", classroom_homework_path(@classroom.id, all.id) %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 <%# /カレンダー %>
