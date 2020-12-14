@@ -152,9 +152,9 @@ a:hover{
   border-radius: 5px;
 }
 
-.btn-contents{
-  margin-top: 20px;
+.btn-contents {
   display: inline;
+  /* margin-top: 20px; */
 }
 /* もどるボタン */
 .back-btn {
