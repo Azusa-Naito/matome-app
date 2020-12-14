@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_080010) do
   create_table "homeworks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.text "content", null: false
+    t.integer "judgement", null: false
     t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
@@ -136,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_080010) do
     t.text "content", null: false
     t.text "detail", null: false
     t.text "appearance", null: false
+    t.integer "judgement", null: false
     t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false

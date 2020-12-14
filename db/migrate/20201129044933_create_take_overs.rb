@@ -5,6 +5,7 @@ class CreateTakeOvers < ActiveRecord::Migration[6.0]
       t.text       :content,    null: false
       t.text       :detail,     null: false
       t.text       :appearance, null: false
+      t.integer    :judgement,  null: false
       t.references :classroom,  foreign_key: true
       t.references :teacher,    foreign_key: true
       t.timestamps
