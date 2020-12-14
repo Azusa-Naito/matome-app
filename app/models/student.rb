@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   # アソシエーション
   has_many :classroom_students
   has_many :classrooms, through: :classroom_students
+  has_many :submissions
   # carrierwaveの記述
   mount_uploader :image, ImageUploader
   # バリデーション
