@@ -24,7 +24,7 @@ class TakeOversController < ApplicationController
   private
   
   def take_over_params
-    params.require(:take_over).permit(:start_time, :content, :detail, :appearance).merge(classroom_id: @classroom.id, teacher_id: current_teacher.id)
+    params.require(:take_over).permit(:start_time, :content, :detail, :appearance, :judgement).merge(classroom_id: @classroom.id, teacher_id: current_teacher.id)
   end
 
 end

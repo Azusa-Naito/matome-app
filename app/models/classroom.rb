@@ -7,6 +7,7 @@ class Classroom < ApplicationRecord
   has_many :students, through: :classroom_students
   has_many :chatrooms
   has_many :take_overs
+  has_many :homeworks
   # 同時に中間テーブルのレコードも更新
   accepts_nested_attributes_for :classroom_teachers, allow_destroy: true
   accepts_nested_attributes_for :classroom_students, allow_destroy: true
