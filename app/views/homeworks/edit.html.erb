@@ -1,0 +1,31 @@
+<div class="input-flame">
+  <h2>宿題</h2>
+  <%= form_with url: classroom_homework_path, model: @homework, local: true do |f| %>
+    <%# エラー文 %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <%= f.label :start_time, "宿題の締切", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <div class="select-box">
+        <%= f.date_select :start_time %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, "宿題内容", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_area :content, class: "form-control", placeholder: '宿題内容を入力してください' %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :judgement, value: 3 %>
+    </div>
+    <div class="form-group">
+      <p><b>クリックしてファイルをアップロード</b></p>
+      <%= f.file_field :file %>
+    </div>
+
+    <div class="submit">
+      <%= f.submit "変更する" %>
+    </div>
+  <% end %>
+</div>
