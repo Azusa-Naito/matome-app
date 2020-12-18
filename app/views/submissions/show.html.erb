@@ -29,6 +29,6 @@
 
 <% if current_student.id == @submission.student_id %>
   <%= link_to '編集する', edit_classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :get %>
-  <%= link_to '削除する', classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :delete %>
+  <%= link_to '削除する', classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :delete, data: { confirm: '削除しますか？' } %>
 <% else %>
 <% end %>

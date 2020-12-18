@@ -19,7 +19,7 @@
 <% if teacher_signed_in? %>
   <% if current_teacher.id == @homework.teacher_id %>
     <%= link_to '編集する', edit_classroom_homework_path(@classroom.id, @homework.id), method: :get %>
-    <%= link_to '削除する', classroom_homework_path(@classroom.id, @homework.id), method: :delete %>
+    <%= link_to '削除する', classroom_homework_path(@classroom.id, @homework.id), method: :delete, data: { confirm: '削除しますか？' } %>
   <% end %>
   <% @classroom.students.each do |student| %>
     <% submission = Submission.where(student_id: student.id, homework_id: @homework.id) %>
