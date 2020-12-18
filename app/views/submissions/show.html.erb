@@ -1,0 +1,34 @@
+<%# サイドバー %>
+<% if teacher_signed_in? %>
+  <%= render "shared/teacher_bar" %>
+<% else %>
+  <%= render "shared/student_bar" %>
+<% end %>
+
+<h1>Submissions#show</h1>
+
+<% if teacher_signed_in? || current_student.id == @submission.student_id %>
+  <div class="form-group">
+    名前：
+    <%= @student.nickname %>
+  </div>
+  <div class="form-group">
+    提出時間：
+    <%= l(@submission.created_at, format: :default, class: "form-label") %>
+  </div>
+  <div class="form-group">
+    内容：
+    <%= @submission.content %>
+  </div>
+  <%# もしファイルがあればファイルを表示 %>
+  <% if @submission.file.attached? %>
+    <strong>ダウンロード:</strong>
+    <%= link_to "添付ファイル" ,rails_blob_path(@submission.file) %>
+  <% end %>
+<% end %>
+
+<% if current_student.id == @submission.student_id %>
+  <%= link_to '編集する', edit_classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :get %>
+  <%= link_to '削除する', classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :delete %>
+<% else %>
+<% end %>
