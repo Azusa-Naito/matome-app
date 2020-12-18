@@ -1,43 +1,46 @@
 ja:
   time:
     formats:
-      default: "%Y/%m/%d %H:%M"
+      default: "%m/%d %H:%M"
+      date:    "/%m/%d"  
   date:
     formats:
-      default: '%Y/%m/%d'
-      long: '%Y年%m月%d日(%a)'
-      short: '%y-%m'
+      default: "%Y/%m/%d"
+      long:    "%Y年%m月%d日(%a)"
+      short:   "%y-%m"
   activerecord:
     attributes:
       teacher:
-        email: メールアドレス
-        password: パスワード
-        employee_number: 社員番号
-        status: 雇用形態
-        last_name: 姓
-        first_name: 名
-        last_name_k: 姓（カタカナ）
-        first_name_k: 名（カタカナ）
-        image: 画像
-        nickname: ニックネーム
+        email:           "メールアドレス"
+        password:        "パスワード"
+        employee_number: "社員番号"
+        status:          "雇用形態"
+        last_name:       "姓"
+        first_name:      "名"
+        last_name_k:     "姓（カタカナ）"
+        first_name_k:    "名（カタカナ）"
+        image:           "画像"
+        nickname:        "ニックネーム"
       student:
-        email: メールアドレス
-        password: パスワード
-        student_number: 学籍番号
-        name: 名前（alphabet）
-        name_k: 名前（カタカナ）
-        image: 画像
-        nickname: ニックネーム
-        birthday: 誕生日
+        email:          "メールアドレス"
+        password:       "パスワード"
+        student_number: "学籍番号"
+        name:           "名前（alphabet）"
+        name_k:         "名前（カタカナ）"
+        image:          "画像"
+        nickname:       "ニックネーム"
+        birthday:       "誕生日"
       chat:
-        text: テキスト
+        text: "テキスト"
+      homework:
+        content: "宿題"
   views:
     pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
+      first:    "&laquo; 最初"
+      last:     "最後 &raquo;"
       previous: "&lsaquo; 前"
-      next: "次 &rsaquo;"
+      next:     "次 &rsaquo;"
       truncate: "..."
     attributes:
       previous: "先月"
-      next: "来月"
+      next:     "来月"

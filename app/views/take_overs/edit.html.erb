@@ -1,6 +1,6 @@
 <div class="input-flame">
   <h2>授業記録入力</h2>
-  <%= form_with url: classroom_take_overs_path, model: @take_over, local: true do |f| %>
+  <%= form_with url: classroom_take_over_path, model: @take_over, local: true do |f| %>
     <%# エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>
 

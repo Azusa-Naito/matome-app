@@ -1,5 +1,11 @@
 <h1>take_overs#show</h1>
 
-<p><%= @take_over.content %></p>
-<p><%= @take_over.detail %></p>
-<p><%= @take_over.appearance %></p>
+授業範囲：<p><%= @take_over.content %></p>
+授業内容：<p><%= @take_over.detail %></p>
+学生の様子：<p><%= @take_over.appearance %></p>
+
+
+<% if current_teacher.id == @take_over.teacher_id %>
+  <%= link_to '編集する', edit_classroom_take_over_path(@classroom.id, @take_over.id), method: :get %>
+  <%= link_to '削除する', classroom_take_over_path(@classroom.id, @take_over.id), method: :delete, data: { confirm: '削除しますか？' } %>
+<% end %>

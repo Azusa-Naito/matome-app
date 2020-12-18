@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_044933) do
+ActiveRecord::Schema.define(version: 2020_12_14_083804) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "chatrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "classroom_id"
@@ -59,6 +80,18 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
+  create_table "homeworks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.text "content", null: false
+    t.integer "judgement", null: false
+    t.bigint "classroom_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_homeworks_on_classroom_id"
+    t.index ["teacher_id"], name: "index_homeworks_on_teacher_id"
+  end
+
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.integer "genre_id", null: false
@@ -99,11 +132,22 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  create_table "submissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "student_id"
+    t.bigint "homework_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["homework_id"], name: "index_submissions_on_homework_id"
+    t.index ["student_id"], name: "index_submissions_on_student_id"
+  end
+
   create_table "take_overs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.text "content", null: false
     t.text "detail", null: false
     t.text "appearance", null: false
+    t.integer "judgement", null: false
     t.bigint "classroom_id"
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
@@ -132,6 +176,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatrooms", "classrooms"
   add_foreign_key "chatrooms", "students"
   add_foreign_key "chatrooms", "teachers"
@@ -141,10 +186,14 @@ ActiveRecord::Schema.define(version: 2020_11_29_044933) do
   add_foreign_key "classroom_teachers", "classrooms"
   add_foreign_key "classroom_teachers", "teachers"
   add_foreign_key "classrooms", "teachers"
+  add_foreign_key "homeworks", "classrooms"
+  add_foreign_key "homeworks", "teachers"
   add_foreign_key "information", "teachers"
   add_foreign_key "inquiries", "information"
   add_foreign_key "inquiries", "students"
   add_foreign_key "inquiries", "teachers"
+  add_foreign_key "submissions", "homeworks"
+  add_foreign_key "submissions", "students"
   add_foreign_key "take_overs", "classrooms"
   add_foreign_key "take_overs", "teachers"
 end
