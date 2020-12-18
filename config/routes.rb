@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       resources :chats, only: [:create]
     end
     resources :take_overs, only: [:new, :create, :show]
-    resources :homeworks, only:[:new, :create, :show] do
-      resources :submissions, only:[:new, :create, :show]
+    resources :homeworks, except: :index do
+      resources :submissions, except: :index
     end
   end
   resources :informations, only: [:index, :new, :create, :show] do
