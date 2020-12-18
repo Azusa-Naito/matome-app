@@ -47,3 +47,8 @@
   <% end %>
 <% end %>
 <%# /カレンダー %>
+
+<% if teacher_signed_in? && current_teacher.id == @classroom.teacher_id %>
+  <%= link_to 'クラスルームを編集する', edit_classroom_path(@classroom.id), method: :get %>
+  <%= link_to 'クラスルームを削除する', classroom_path(@classroom.id), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<% end %>
