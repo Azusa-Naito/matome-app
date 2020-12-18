@@ -27,11 +27,16 @@
 <%= month_calendar events: @all do |date, all| %>
   <%= date.day %>
   <% all.each do |all| %>
+    <%# 出席 %>
+    <% if all.judgement == 1 %>
+    <%#/出席 %>
     <%# 授業記録 %>
-    <% if all.judgement == 2 %>
-      <div>
-        <%= link_to "引継ぎ", classroom_take_over_path(@classroom.id, all.id) %>
-      </div>
+    <% elsif all.judgement == 2 %>
+      <% if teacher_signed_in? %>
+        <div>
+          <%= link_to "授業記録", classroom_take_over_path(@classroom.id, all.id) %>
+        </div>
+      <% end %>
     <%#/授業記録 %>
     <%# 宿題 %>
     <% elsif all.judgement == 3 %>
