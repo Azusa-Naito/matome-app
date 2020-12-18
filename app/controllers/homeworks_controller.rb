@@ -1,6 +1,7 @@
 class HomeworksController < ApplicationController
+  # 学生は一部参照不可
   before_action :authenticate_teacher!, except: [:show]
-  before_action :set_classroom, only: [:create, :show, :update, :destroy]
+  before_action :set_classroom, only: [:create, :show, :edit, :update, :destroy]
   before_action :set_homework, only: [:show, :edit, :update]
   
   def new
@@ -22,7 +23,7 @@ class HomeworksController < ApplicationController
 
   def edit
     if current_teacher.id != @homework.teacher_id 
-      redirect_to root_path
+      redirect_to classroom_path(@classroom.id)
     end
   end
 
