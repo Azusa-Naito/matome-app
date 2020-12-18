@@ -1,5 +1,10 @@
 <h1>informations#show</h1>
 
+<% if teacher_signed_in? && current_teacher.id == @information.teacher_id %>
+    <%= link_to '編集する', edit_information_path(@information.id), method: :get %>
+    <%= link_to '削除する', information_path(@information.id), method: :delete, data: { confirm: '削除しますか？' } %>
+  <% end %>
+
 <div class='infomation'>
   <p>タイトル：<%= @information.title %></p>
   <p>ジャンル：<%= @information.genre.name %></p>

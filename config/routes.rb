@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :submissions, except: :index
     end
   end
-  resources :informations, only: [:index, :new, :create, :show] do
+  resources :informations do
     resources :inquiries, only: [:new, :create]
   end
 end

@@ -1,0 +1,34 @@
+<h1>informations#new</h1>
+
+<div class="input-flame">
+  <%= form_with url: information_path, model: @information, method: :patch, local: true do |f| %>
+    <%# エラー文 %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <%= f.label :title, "タイトル", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_field :title, class: "form-control", placeholder: 'タイトルを入力してください' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :genre, "ジャンル", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"select-box", id:"genre"}) %>
+  </div>
+
+    <div class="form-group">
+      <%= f.label :contetnt, "内容", class: "form-label" %>
+      <span class="indispensable">必須</span>
+      <%= f.text_area :content, class: "form-control", placeholder: '内容を入力してください' %>
+    </div>
+
+
+    <div class="btn-contents">
+      <%= f.submit class: "btn-primary"%>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    </div>
+  <% end %>
+</div>
+
