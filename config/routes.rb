@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :chatrooms, only: [:new, :create, :show] do
       resources :chats, only: [:create]
     end
-    resources :take_overs, only: [:new, :create, :show]
+    resources :take_overs, except: :index
     resources :homeworks, except: :index do
       resources :submissions, except: :index
     end
