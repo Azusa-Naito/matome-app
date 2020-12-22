@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_083804) do
     t.text "text", null: false
     t.integer "judgement", null: false
     t.bigint "chatroom_id"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chatroom_id"], name: "index_chats_on_chatroom_id"
