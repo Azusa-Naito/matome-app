@@ -47,7 +47,22 @@
   <%# 担任クラスの表示 %>
   <h4>担任クラス一覧</h4>
   <% @classrooms_hr.each do |classroom| %>
-    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
+<div class='a-box'>
+    <%= link_to classroom_path(classroom.id) do %>
+      <div class="genre-icon d-inline">
+        <%= l classroom.year_month, format: :short %>
+      </div>
+      <%= classroom.name %>
+      <% classroom.chatrooms.each do |chatroom| %>
+        <% if Chat.where(chatroom_id: chatroom.id, judgement: 1, checked: false).exists? %>
+          <div class="notification">
+            新着
+          </div>
+          <%# return エラー出る %>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
   <% end %>
   <%# /担任クラスの表示 %>
   <%# 担当クラスの表示 %>
@@ -68,7 +83,22 @@
 <%# 学生表示内容 %>
 <% if student_signed_in? %>
   <% @classrooms_st.each do |classroom| %>
-    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
+    <%#= render partial: "classroom_each", locals: {classroom: classroom} %>
+    <div class='a-box'>
+      <%= link_to classroom_path(classroom.id) do %>
+        <div class="genre-icon d-inline">
+          <%= l classroom.year_month, format: :short %>
+        </div>
+        <%= classroom.name %>
+        <% classroom.chatrooms.each do |chatroom| %>
+          <% if Chat.where(chatroom_id: chatroom.id, judgement: 1, checked: false).exists? %>
+            <div class="notification">
+              新着
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 <%# /学生表示内容 %>
