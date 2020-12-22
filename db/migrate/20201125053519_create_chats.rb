@@ -4,6 +4,7 @@ class CreateChats < ActiveRecord::Migration[6.0]
       t.text       :text,        null: false
       t.integer    :judgement,   null: false
       t.references :chatroom,    foreign_key: true
+      t.boolean    :checked,  default: false, null: false
       t.timestamps
     end
   end
