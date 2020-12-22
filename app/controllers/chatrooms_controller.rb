@@ -5,14 +5,18 @@ class ChatroomsController < ApplicationController
 
   def create
     @classroom = Classroom.find(params[:classroom_id])
-    @student = Student.find(params[:student])
-    @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
+    if teacher_signed_in?
+      @student = Student.find(params[:student])
+      @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
+    elsif student_signed_in?
+      @teacher = Teacher.where(id: @classroom.teacher_id)
+      @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: current_student.id, teacher_id: @classroom.teacher_id)
+    end
     # 条件分岐
     # 学生のチャットルームが既に存在したら
     if @chatroom.present?
     # if Chatroom.exists?(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
-    # なんでかわからんけど、@chatroom.idが複数形で、idsになる
-      redirect_to classroom_chatroom_path(@classroom.id, @chatroom.ids)
+      redirect_to classroom_chatroom_path(@classroom.id, @chatroom[0].id)
     else #学生とのチャットルームが存在しなかったら
       @chatroom = Chatroom.new(chatroom_params)
       if @chatroom.valid?
@@ -31,6 +35,16 @@ class ChatroomsController < ApplicationController
     @student = @chatroom.student
     @chats = Chat.where(chatroom_id: @chatroom.id)
     @chat = Chat.new
+    # チャットを既読にする
+    if teacher_signed_in?
+      @chats.where(judgement: 2, checked: false).each do |checked|
+        checked.update_attributes(checked: true)
+      end
+    elsif student_signed_in?
+      @chats.where(judgement: 1, checked: false).each do |checked|
+        checked.update_attributes(checked: true)
+      end
+    end  
   end
 
   private
