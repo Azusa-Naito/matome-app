@@ -292,3 +292,13 @@ a:hover{
   padding: 10px;
 }
 /* 宿題提出ページ学生のboxここまで */
+
+/* チャットの通知ここから */
+.notification{
+  display: inline;
+  background-color: red;
+  border-radius: 10px;
+  padding: 2px 5px;
+}
+
+/* チャットの通知ここまで */
