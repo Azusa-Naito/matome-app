@@ -38,8 +38,8 @@
   <%# ゲストのヘッダー %>
   <p><%= link_to "講師はこちら", new_teacher_session_path %></p>
   <p><%= link_to "学生はこちら", new_student_session_path %></p>
-    <%# <li class="header-li"><%= link_to 'トップページ', root_path, method: :get, class: "root" % ></li> %>
   <p><%= link_to '講師ゲストログイン', teachers_guest_sign_in_path, method: :post %></p>
+  <p><%= link_to '学生ゲストログイン', students_guest_sign_in_path, method: :post %></p>
   <% end %>
 </ul>
 
