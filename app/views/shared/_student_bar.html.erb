@@ -1,14 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#">
-        <span class="d-none d-lg-block"><%= image_tag current_student.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
-    </a>
-        <div class="d-block"><%= current_student.nickname %></div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item"><%= link_to 'ログアウト', destroy_student_session_path, method: :delete, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "トップページ", root_path, class: "nav-link" %></li>
-        </ul>
-    </div>
+  <a class="navbar-brand js-scroll-trigger" href="#">
+      <span class="d-none d-lg-block"><%= image_tag current_student.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
+  </a>
+  <div class="d-block"><%= current_student.nickname %></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item"><%= link_to 'ログアウト', destroy_student_session_path, method: :delete, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "トップページ", root_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= "先生とチャットをする" %></li>
+      <li class="nav-item">
+        <%# <%= link_to @teacher[0].nickname+"先生", classroom_chatrooms_path(@classroom.id), method: :post, class: "nav-link" %>
+        <%= link_to classroom_chatrooms_path(@classroom.id), method: :post, class: "nav-link" do %>
+          <%= @teacher.nickname+"先生" %>
+          <%# もしチャットルームがあったら通知を表示 %>
+          <% @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: current_student.id) %>
+          <% if @chatroom.exists? %>
+            <%# 未読の数をカウント %>
+            <% @count = Chat.where(judgement: 1, chatroom_id: @chatroom[0].id,  checked: false).count %>
+            <% if @count != 0 %>
+              <div class="notification">
+                <%= @count %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </nav>

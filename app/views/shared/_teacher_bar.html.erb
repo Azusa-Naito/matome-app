@@ -1,32 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#">
-        <span class="d-none d-lg-block"><%= image_tag current_teacher.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
-    </a>
-        <div class="d-block"><%= current_teacher.nickname %></div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item"><%= link_to "ログアウト", destroy_teacher_session_path, method: :delete, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "クラス作成", new_classroom_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "インフォメーション作成", new_information_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "授業記録作成", new_classroom_take_over_path(@classroom.id), class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "宿題作成", new_classroom_homework_path(@classroom.id), class: "nav-link" %></li>
-            <%# 担任にのみ表示 %>
-            <li class="nav-item"><%= "学生チャット一覧" %></li>
-            <% if @classroom.teacher_id == current_teacher.id %>
-                <%# <div class="box">
-                <label for="inbox1">学生チャット一覧<div class="box_label"><%= image_tag "arrow_down.png", size: '15x15' % ></div></label>
-                <input type="checkbox" id="inbox1" class="on-off">
-                  <div>%>
-                      <% @classroom.students.each do |student| %>
-                        <li class="nav-item">
-                          <%= link_to student.nickname, classroom_chatrooms_path(@classroom.id, student: student), method: :post, class: "nav-link" %>
-                        </li>
-                      <% end %>
+  <a class="navbar-brand js-scroll-trigger" href="#">
+      <span class="d-none d-lg-block"><%= image_tag current_teacher.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
+  </a>
+  <div class="d-block"><%= current_teacher.nickname %></div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item"><%= link_to "ログアウト", destroy_teacher_session_path, method: :delete, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "クラス作成", new_classroom_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "インフォメーション作成", new_information_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "インフォメーション一覧", informations_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "授業記録作成", new_classroom_take_over_path(@classroom.id), class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "宿題作成", new_classroom_homework_path(@classroom.id), class: "nav-link" %></li>
+      <%# 担任にのみ表示 %>
+      <% if @classroom.teacher_id == current_teacher.id %>
+        <li class="nav-item"><%= "学生チャット一覧" %></li>
+        <%# <div class="box">
+          <label for="inbox1">学生チャット一覧<div class="box_label"><%= image_tag "arrow_down.png", size: '15x15' % ></div></label>
+          <input type="checkbox" id="inbox1" class="on-off">
+        <div>%>
+        <% @classroom.students.each do |student| %>
+          <li class="nav-item">
+            <%= link_to classroom_chatrooms_path(@classroom.id, student: student), method: :post, class: "nav-link" do %>
+              <%= student.nickname %>
+              <%# もしチャットルームがあったら通知を表示 %>
+              <% @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: student.id) %>
+              <% if @chatroom.exists? %>
+                <%# 未読の数をカウント %>
+                <% @count = Chat.where(judgement: 2, chatroom_id: @chatroom[0].id,  checked: false).count %>
+                <% if @count != 0 %>
+                  <div class="notification">
+                    <%= @count %>
                   </div>
-                </div>
+                <% end %>
+              <% end %>
             <% end %>
-        </ul>
-    </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </nav>
