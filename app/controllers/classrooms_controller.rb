@@ -6,10 +6,11 @@ class ClassroomsController < ApplicationController
   def index
     if teacher_signed_in?
       # 担任クラス
-      @classrooms_hr = Classroom.where(teacher_id: current_teacher.id)
+      @classrooms_hr = Classroom.where(teacher_id: current_teacher.id).order(year_month: "DESC")
       # 授業だけのクラス
-      @classrooms_cl = current_teacher.classrooms
-      @classrooms = Classroom.all
+      @classrooms_cl = current_teacher.classrooms.order(year_month: "DESC")
+      # 全てのクラス
+      @classrooms = Classroom.all.order(year_month: "DESC")
     elsif student_signed_in?
       @classrooms_st = current_student.classrooms
     end
