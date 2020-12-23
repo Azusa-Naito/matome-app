@@ -29,5 +29,19 @@ class Teacher < ApplicationRecord
     validates :nickname
   end
 
-
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |teacher|
+      # teacher.password = SecureRandom.urlsafe_base64
+      gimei = Gimei.name
+      teacher.employee_number = Faker::Number.number(digits: 6)
+      teacher.status_id = Faker::Number.between(from: 2, to: 4)
+      teacher.last_name = gimei.last.kanji
+      teacher.first_name = gimei.first.kanji
+      teacher.last_name_k = gimei.last.katakana
+      teacher.first_name_k = gimei.first.katakana
+      teacher.image = open('./db/fixtures/teacher.png')
+      teacher.password = '1a1a1a1a'
+      teacher.nickname = gimei.last.hiragana
+    end
+  end
 end
