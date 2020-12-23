@@ -40,7 +40,6 @@ class Teacher < ApplicationRecord
       teacher.last_name_k = gimei.last.katakana
       teacher.first_name_k = gimei.first.katakana
       teacher.image = open('./db/fixtures/teacher.png')
-      teacher.email = Faker::Internet.email
       teacher.password = '1a1a1a1a'
       teacher.nickname = gimei.last.hiragana
     end

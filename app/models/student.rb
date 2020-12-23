@@ -25,7 +25,6 @@ class Student < ApplicationRecord
       student.name_k = Gimei.name.katakana
       student.nickname = Gimei.name.last.katakana
       student.image = open('./db/fixtures/student.png')
-      student.email = Faker::Internet.email
       student.password = SecureRandom.urlsafe_base64
       student.birthday = Faker::Date.between(from: '1990-01-01', to: '2002-4-01')
     end
