@@ -1,12 +1,16 @@
 <%= render "shared/teacher_classroom_bar" %>
 
+<div class="btn-box">
+  <div class="col-sm-8">
+    授業範囲：<p><%= @take_over.content %></p>
+    授業内容：<p><%= @take_over.detail %></p>
+    学生の様子：<p><%= @take_over.appearance %></p>
+  </div>
 
-授業範囲：<p><%= @take_over.content %></p>
-授業内容：<p><%= @take_over.detail %></p>
-学生の様子：<p><%= @take_over.appearance %></p>
-
-
-<% if current_teacher.id == @take_over.teacher_id %>
-  <%= link_to '編集する', edit_classroom_take_over_path(@classroom.id, @take_over.id), method: :get %>
-  <%= link_to '削除する', classroom_take_over_path(@classroom.id, @take_over.id), method: :delete, data: { confirm: '削除しますか？' } %>
-<% end %>
+  <% if current_teacher.id == @take_over.teacher_id %>
+    <div class="col-md-2">
+      <%= link_to '編集', edit_classroom_take_over_path(@classroom.id, @take_over.id), method: :get, class: "btn-primary" %>
+      <%= link_to '削除', classroom_take_over_path(@classroom.id, @take_over.id), method: :delete, data: { confirm: '削除しますか？' }, class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>

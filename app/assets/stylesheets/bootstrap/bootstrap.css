@@ -2617,12 +2617,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   padding: 10px 20px;
+  margin-bottom: 20px;
   border-radius: 5px;
   color: #fff;
   background-color: #67b9e5;
   border-color: #67b9e5;
-  /* display: block;
-  margin-left: auto;
+  display: inline-block;
+  /* margin-left: auto;
   margin-right: auto; */
 }
 

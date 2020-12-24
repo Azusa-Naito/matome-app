@@ -4,58 +4,62 @@
 <% elsif student_signed_in? %>
   <%= render "shared/student_bar" %>
 <% end %>
-<% if teacher_signed_in? && current_teacher.id == @information.teacher_id %>
-    <%= link_to '編集する', edit_information_path(@information.id), method: :get %>
-    <%= link_to '削除する', information_path(@information.id), method: :delete, data: { confirm: '削除しますか？' } %>
-  <% end %>
+<div class="btn-box">
+  <div class="col-sm-8">
+      <p>タイトル：<%= @information.title %></p>
+      <p>ジャンル：<%= @information.genre.name %></p>
+      <%# <div class='info-content'> %>
+        <p>内容：<%= @information.content %></p>
+      <%# </div> %>
+      <p>先生：<%= @information.teacher.nickname %>先生</p>
+      <%= @information.created_at %>
 
-<div class='infomation'>
-  <p>タイトル：<%= @information.title %></p>
-  <p>ジャンル：<%= @information.genre.name %></p>
-  <div class='info-content'>
-    <p>内容：<%= @information.content %></p>
-  </div>
-  <p>先生：<%= @information.teacher.nickname %>先生</p>
-  <%= @information.created_at %>
-</div>
+    <%# 質問投稿フォーム %>
+    <div class='inquiry'>
+      <%# classrooms#newのコピペ %>
 
-<%# 質問投稿フォーム %>
-<div class='inquiry'>
-  <%# classrooms#newのコピペ %>
+      <div class='chat-room-form'>
+        <%= form_with url: information_inquiries_path(@information.id), model: @inquiry, method: :post, local: true do |f| %>
+          <%# エラー文 %>
+          <%= render 'shared/error_messages', model: f.object %>
 
-  <div class='chat-room-form'>
-    <%= form_with url: information_inquiries_path(@information.id), model: @inquiry, method: :post, local: true do |f| %>
-      <%# エラー文 %>
-      <%= render 'shared/error_messages', model: f.object %>
+          <div class='chat-room-form__field'>
+            <div class='chat-room-form__field--left'>
+              <%= f.label :質問, class: 'chat-room-form__label'%>
+            </div>
+            <div class='chat-room-form__field--right'>
+              <%= f.text_area :content, class: 'chat__room_name chat-room-form__input', placeholder: '質問を入力してください'%>
+            </div>
+          </div>
 
-      <div class='chat-room-form__field'>
-        <div class='chat-room-form__field--left'>
-          <%= f.label :質問, class: 'chat-room-form__label'%>
-        </div>
-        <div class='chat-room-form__field--right'>
-          <%= f.text_area :content, class: 'chat__room_name chat-room-form__input', placeholder: '質問を入力してください'%>
-        </div>
+          <div class='chat-room-form__field'>
+            <div class='chat-room-form__field--left'></div>
+            <div class='chat-room-form__field--right'>
+              <%= f.submit "質問する", class: 'chat-room-form__action-btn'%>
+            </div>
+          </div>
+        <% end %>
       </div>
+    </div>
+    <%# /質問投稿フォーム %>
 
-      <div class='chat-room-form__field'>
-        <div class='chat-room-form__field--left'></div>
-        <div class='chat-room-form__field--right'>
-          <%= f.submit "質問する", class: 'chat-room-form__action-btn'%>
-        </div>
-      </div>
+    <%# 質問一覧表示 %>
+    <% @inquiries.each do |inquiry| %>
+      <p><%= inquiry.content %></p>
+      <% if inquiry.teacher_id.present? %>
+        <p><%= @teacher.nickname %>先生</p>
+      <% elsif inquiry.student_id.present? %>
+        <p><%= @student.nickname %></p>
+      <% end %>
+
     <% end %>
+    <%# /質問一覧表示 %>
   </div>
-</div>
-<%# /質問投稿フォーム %>
 
-<%# 質問一覧表示 %>
-<% @inquiries.each do |inquiry| %>
-  <p><%= inquiry.content %></p>
-  <% if inquiry.teacher_id.present? %>
-    <p><%= @teacher.nickname %>先生</p>
-  <% elsif inquiry.student_id.present? %>
-    <p><%= @student.nickname %></p>
+  <% if teacher_signed_in? && current_teacher.id == @information.teacher_id %>
+    <div class="col-md-2">
+      <%= link_to '編集する', edit_information_path(@information.id), method: :get, class: "btn-primary" %>
+      <%= link_to '削除する', information_path(@information.id), method: :delete, data: { confirm: '削除しますか？' }, class: "btn-primary" %>
+    </div>
   <% end %>
-
-<% end %>
-<%# /質問一覧表示 %>
+</div>

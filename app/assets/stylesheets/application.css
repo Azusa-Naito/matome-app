@@ -302,3 +302,10 @@ a:hover{
 }
 
 /* チャットの通知ここまで */
+
+/* 編集・削除ボタン */
+.btn-box{
+  display: flex;
+  justify-content: space-around;
+}
+/*/編集・削除ボタン */

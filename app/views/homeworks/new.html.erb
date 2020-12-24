@@ -6,7 +6,7 @@
     <%= render 'shared/error_messages', model: f.object %>
 
     <div class="form-group">
-      <%= f.label :start_time, "宿題の締切", class: "form-label" %>
+      <%= f.label :start_time, "宿題を出した日", class: "form-label" %>
       <span class="indispensable">必須</span>
       <div class="select-box">
         <%= f.date_select :start_time %>

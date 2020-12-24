@@ -6,21 +6,27 @@
 <% end %>
 
 <h1>homeworks#show</h1>
-
-<div class="form-group">
-  宿題内容：
-  <%= @homework.content %>
+<div class="btn-box">
+  <div class="col-sm-8">
+  <div class="form-group">
+    宿題内容：
+    <%= @homework.content %>
+  </div>
+  <% if @homework.file.attached? %>
+    <strong>ダウンロード:</strong>
+    <%= link_to "添付ファイル" ,rails_blob_path(@homework.file) %>
+  <% end %>
+  </div>
+  <% if teacher_signed_in? && current_teacher.id == @homework.teacher_id %>
+    <div class="col-md-2">
+      <%= link_to '編集', edit_classroom_homework_path(@classroom.id, @homework.id), method: :get, class: "btn-primary" %>
+      <%= link_to '削除', classroom_homework_path(@classroom.id, @homework.id), method: :delete, data: { confirm: '削除しますか？' }, class: "btn-primary" %>
+    </div>
+  <% end %>
 </div>
-<% if @homework.file.attached? %>
-  <strong>ダウンロード:</strong>
-  <%= link_to "添付ファイル" ,rails_blob_path(@homework.file) %>
-<% end %>
+
 
 <% if teacher_signed_in? %>
-  <% if current_teacher.id == @homework.teacher_id %>
-    <%= link_to '編集する', edit_classroom_homework_path(@classroom.id, @homework.id), method: :get %>
-    <%= link_to '削除する', classroom_homework_path(@classroom.id, @homework.id), method: :delete, data: { confirm: '削除しますか？' } %>
-  <% end %>
   <% @classroom.students.each do |student| %>
     <% submission = Submission.where(student_id: student.id, homework_id: @homework.id) %>
     <div class="submission-box">
@@ -40,8 +46,8 @@
   <%= link_to "宿題提出", new_classroom_homework_submission_path(@classroom.id, @homework.id), class: "nav-link" %>
 
     <% submission = Submission.where(student_id: current_student.id, homework_id: @homework.id) %>
-    <div class="submission-box">
-      <% if submission.exists? && current_student.id == submission.student_id %>
+    <% if submission.exists? && current_student.id == submission[0].student_id %>
+      <div class="submission-box">
         <span class="indispensable">提出</span>
         <%# 提出した日付・時間 %>
         <%= l submission[0].created_at %>
@@ -49,8 +55,7 @@
         <div class="btn-contents">
           <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission[0].id) %>
         </div>
-        
-      <% end %>
-    </div>
+      </div>
+    <% end %>
 
 <% end %>
