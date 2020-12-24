@@ -1,5 +1,6 @@
+<%= render "shared/teacher_classroom_bar" %>
 <div class="input-flame">
-  <h2>授業記録入力</h2>
+  <h2>授業記録編集</h2>
   <%= form_with url: classroom_take_over_path, model: @take_over, local: true do |f| %>
     <%# エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>

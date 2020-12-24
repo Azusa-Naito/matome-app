@@ -1,5 +1,9 @@
 <h1>informations#show</h1>
-
+<% if teacher_signed_in? %>
+  <%= render "shared/teacher_bar" %>
+<% elsif student_signed_in? %>
+  <%= render "shared/student_bar" %>
+<% end %>
 <% if teacher_signed_in? && current_teacher.id == @information.teacher_id %>
     <%= link_to '編集する', edit_information_path(@information.id), method: :get %>
     <%= link_to '削除する', information_path(@information.id), method: :delete, data: { confirm: '削除しますか？' } %>

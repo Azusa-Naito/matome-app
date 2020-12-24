@@ -1,7 +1,7 @@
 class TakeOversController < ApplicationController
   # 学生は全て参照不可
   before_action :authenticate_teacher!
-  before_action :set_classroom, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_classroom, except: :index
   before_action :set_take_over, only: [:show, :edit, :update]
 
 

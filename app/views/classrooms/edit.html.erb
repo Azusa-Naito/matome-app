@@ -1,5 +1,6 @@
+<%= render "shared/teacher_classroom_bar" %>
 <div class="input-flame">
-  <h2>クラスルーム作成</h2>
+  <h2>クラスルーム編集</h2>
   <%=form_with model: @classroom, local: true do |f|%>
     <%# エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>

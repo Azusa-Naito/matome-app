@@ -1,8 +1,8 @@
 <%# サイドバー %>
 <% if teacher_signed_in? %>
-  <%= render "shared/teacher_bar" %>
+  <%= render "shared/teacher_classroom_bar" %>
 <% else %>
-  <%= render "shared/student_bar" %>
+  <%= render "shared/student_classroom_bar" %>
 <% end %>
 
 <h1>homeworks#show</h1>
@@ -41,7 +41,7 @@
 
     <% submission = Submission.where(student_id: current_student.id, homework_id: @homework.id) %>
     <div class="submission-box">
-      <% if submission.exists? || current_student.id == submission.student_id %>
+      <% if submission.exists? && current_student.id == submission.student_id %>
         <span class="indispensable">提出</span>
         <%# 提出した日付・時間 %>
         <%= l submission[0].created_at %>

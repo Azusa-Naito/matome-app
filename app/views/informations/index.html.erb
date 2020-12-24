@@ -1,5 +1,9 @@
 <h1>informations#index</h1>
-
+<% if teacher_signed_in? %>
+  <%= render "shared/teacher_bar" %>
+<% elsif student_signed_in? %>
+  <%= render "shared/student_bar" %>
+<% end %>
 <% @informations.each do |information| %>
   <div class='information'>
     <%= link_to information_path(information.id) do %>

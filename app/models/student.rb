@@ -18,6 +18,11 @@ class Student < ApplicationRecord
     validates :birthday
   end
 
+  # 期間の重複がないかどうか
+  # classroom_studentsを作成する際に、classroom_studentsの中にあるその学生のidと紐づいているクラスが同じ期間のものだったらエラー文吐き出し
+  # if 
+
+  # ゲストログイン
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |student|
       student.student_number = Faker::Number.number(digits: 7)

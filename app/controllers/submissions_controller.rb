@@ -1,8 +1,8 @@
 class SubmissionsController < ApplicationController
-  before_action :set_classroom, only: [:create, :show, :update, :destroy]
+  before_action :authenticate_student!, only: [:new, :edit]
+  before_action :set_classroom, except: :index
   before_action :set_homework, only: [:create, :show, :update]
   before_action :set_submission, only: [:show, :edit, :update]
-
 
   def new
     @submission = Submission.new

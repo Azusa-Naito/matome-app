@@ -1,7 +1,5 @@
 <h1>informations#new</h1>
-
-<%# classrooms#newのコピペ %>
-
+<%= render "shared/teacher_bar" %>
 <div class="input-flame">
   <%= form_with url: informations_path, model: @information, method: :post, local: true do |f| %>
     <%# エラー文 %>

@@ -38,7 +38,11 @@ class ClassroomsController < ApplicationController
     @take_over = TakeOver.where(classroom_id: @classroom.id)
     @homework = Homework.where(classroom_id: @classroom.id)
     @all = @take_over + @homework
-    @teacher = Teacher.find_by(id: @classroom.teacher_id)
+    if teacher_signed_in?
+      @students = @classroom.students.order(student_number: "DESC")
+    elsif student_signed_in?
+      @teacher = Teacher.find_by(id: @classroom.teacher_id)
+    end
   end
 
   def edit

@@ -1,8 +1,8 @@
 <%# サイドバー %>
 <% if teacher_signed_in? %>
-  <%= render "shared/teacher_bar" %>
+  <%= render "shared/teacher_classroom_bar" %>
 <% elsif student_signed_in? %>
-  <%= render "shared/student_bar" %>
+  <%= render "shared/student_classroom_bar" %>
 <% end %>
 
 <div class="chat-flame" id="scroll-inner">

@@ -32,8 +32,12 @@ ja:
         birthday:       "誕生日"
       chat:
         text: "テキスト"
+      take_over:
+        content:    "授業範囲"
+        detail:     "授業内容"
+        appearance: "学生の様子"
       homework:
-        content: "宿題"
+        content: "宿題内容"
   views:
     pagination:
       first:    "&laquo; 最初"

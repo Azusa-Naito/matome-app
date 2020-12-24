@@ -1,8 +1,8 @@
 <%# サイドバー %>
 <% if teacher_signed_in? %>
-  <%= render "shared/teacher_bar" %>
+  <%= render "shared/teacher_classroom_bar" %>
 <% else %>
-  <%= render "shared/student_bar" %>
+  <%= render "shared/student_classroom_bar" %>
 <% end %>
 
 <h1>Submissions#show</h1>
@@ -27,7 +27,7 @@
   <% end %>
 <% end %>
 
-<% if current_student.id == @submission.student_id %>
+<% if student_signed_in? && current_student.id == @submission.student_id %>
   <%= link_to '編集する', edit_classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :get %>
   <%= link_to '削除する', classroom_homework_submission_path(@classroom.id, @homework.id, @submission.id), method: :delete, data: { confirm: '削除しますか？' } %>
 <% else %>

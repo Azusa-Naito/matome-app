@@ -1,7 +1,7 @@
 class HomeworksController < ApplicationController
   # 学生は一部参照不可
   before_action :authenticate_teacher!, except: [:show]
-  before_action :set_classroom, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_classroom, except: :index
   before_action :set_homework, only: [:show, :edit, :update]
   
   def new
