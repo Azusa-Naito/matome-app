@@ -17,15 +17,17 @@ class Teacher < ApplicationRecord
   with_options presence: true do
     validates :employee_number
     validates :status_id, numericality: { other_than: 1 }
-    with_options format: {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/} do
+    # with_options format: {with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/} do
+    with_options format: {with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'は全角文字を使用してください'} do
       validates :last_name
       validates :first_name
     end
-    with_options format: {with: /\A[ァ-ヶー－]+\z/} do
+    with_options format: {with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナのみで入力してください'} do
       validates :last_name_k
       validates :first_name_k
     end
     validates :image
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])\w{6,}\z/i, message: 'は半角英数字6文字以上で入力してください'}
     validates :nickname
   end
 

@@ -12,9 +12,10 @@ class Student < ApplicationRecord
   with_options presence: true do
     validates :student_number
     validates :name
-    validates :name_k
+    validates :name_k, format: {with: /\A[ァ-ヶー－ 　]+\z/, message: 'は全角カタカナのみで入力してください'}
     validates :nickname
     validates :image
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])\w{6,}\z/i, message: 'は半角英数字6文字以上で入力してください'}
     validates :birthday
   end
 
