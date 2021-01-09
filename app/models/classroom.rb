@@ -13,9 +13,5 @@ class Classroom < ApplicationRecord
   accepts_nested_attributes_for :classroom_students, allow_destroy: true
   
   # バリデーション
-  with_options presence: true do
-    validates :name
-    # validates :teacher_ids
-    # validates :student_ids
-  end
+  validates :name, :year_month, :teacher_id, presence: true
 end
