@@ -15,6 +15,10 @@ RSpec.describe Student, type: :model do
         @student.password_confirmation = 'aaa111'
         expect(@student).to be_valid
       end
+      it 'nameがアルファベットであれば登録できる' do
+        @student.name = 'Abc Def'
+        expect(@student).to be_valid
+      end
       it 'name_kがカタカナであれば登録できる' do
         @student.name_k = 'カタカナ'
         expect(@student).to be_valid
@@ -31,6 +35,11 @@ RSpec.describe Student, type: :model do
         @student.name = ''
         @student.valid?
         expect(@student.errors.full_messages).to include("名前（alphabet）を入力してください")
+      end
+      it 'nameがアルファベット以外では登録できない' do
+        @student.name = Gimei.last.kanji
+        @student.valid?
+        expect(@student.errors.full_messages).to include("名前（alphabet）はアルファベットのみで入力してください")
       end
       it 'name_kが空では登録できない' do
         @student.name_k = ''

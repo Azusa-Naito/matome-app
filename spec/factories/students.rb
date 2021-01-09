@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :student do
     student_number        { Faker::Number.number(digits: 7) }
-    name                  { Faker::Name.name }
+    name                  { "Jorge David" }
     name_k                { Gimei.katakana }
     nickname              { Gimei.last.katakana }
     image                 { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/test.png')) }    

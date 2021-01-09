@@ -11,7 +11,7 @@ class Student < ApplicationRecord
   # バリデーション
   with_options presence: true do
     validates :student_number
-    validates :name
+    validates :name, format: {with: /\A[A-Za-z 　]+\z/, message: 'はアルファベットのみで入力してください'}
     validates :name_k, format: {with: /\A[ァ-ヶー－ 　]+\z/, message: 'は全角カタカナのみで入力してください'}
     validates :nickname
     validates :image

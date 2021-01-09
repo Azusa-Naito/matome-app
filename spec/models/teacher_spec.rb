@@ -102,6 +102,7 @@ RSpec.describe Teacher, type: :model do
       end
       it 'passwordが空では登録できない' do
         @teacher.password = ''
+        @teacher.password_confirmation = ''
         @teacher.valid?
         expect(@teacher.errors.full_messages).to include("パスワードを入力してください")
       end
