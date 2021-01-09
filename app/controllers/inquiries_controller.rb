@@ -19,7 +19,7 @@ class InquiriesController < ApplicationController
   def inquiry_params
     if teacher_signed_in?
       params.require(:inquiry).permit(:content).merge(information_id: params[:information_id], teacher_id: current_teacher.id)
-    elsif studetn_signed_in?
+    elsif student_signed_in?
       params.require(:inquiry).permit(:content).merge(information_id: params[:information_id], student_id: current_student.id)
     end
   end
