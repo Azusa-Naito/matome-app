@@ -36,6 +36,12 @@ ja:
         teacher:    "講師"
         name:       "クラスの名前"
         year_month: "学期"
+      information:
+        title:    "タイトル"
+        genre_id: "ジャンル"
+        content:  "内容"
+      inquiry:
+        content: "内容"
       chat:
         text: "テキスト"
       take_over:
@@ -44,6 +50,8 @@ ja:
         appearance: "学生の様子"
       homework:
         content: "宿題内容"
+      submission:
+        content: "内容"
   views:
     pagination:
       first:    "&laquo; 最初"
