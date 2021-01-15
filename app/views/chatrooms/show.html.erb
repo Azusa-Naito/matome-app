@@ -49,10 +49,8 @@
     <% end %>
   <% end %>
 <%# /チャット一覧表示 %>
-
   <%# チャット投稿フォーム %>
-  <%# ※@chatroomだとエラーでるから、一旦下の書き方 %>
-  <%= form_with url: classroom_chatroom_chats_path(@classroom.id, Chatroom.find(params[:id]).id ), model: @chat, method: :post, class: "form", local: true do |f| %>
+  <%= form_with url: classroom_chatroom_chats_path(@classroom.id, params[:id] ), model: @chat, method: :post, class: "form", local: true do |f| %>
     <%# エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>
 
