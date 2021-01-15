@@ -3,52 +3,49 @@
 <% elsif student_signed_in? %>
   <%= render "shared/student_bar" %>
 <% else %>
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item"><%= link_to "講師はこちら", new_teacher_session_path, class: "nav-link"%></li>
-        <li class="nav-item"><%= link_to "学生はこちら", new_student_session_path, class: "nav-link"%></li>
-        <li class="nav-item"><%= link_to '講師ゲストログイン', teachers_guest_sign_in_path, method: :post, class: "nav-link"%></li>
-        <li class="nav-item"><%= link_to '学生ゲストログイン', students_guest_sign_in_path, method: :post, class: "nav-link"%></li>
-      </ul>
-    </div>
-  </nav>
+  <%= render "shared/default_bar" %>
 <% end %>
 
 <%# 講師表示内容 %>
 <% if teacher_signed_in? %>
   <%# 担任クラスの表示 %>
-  <h4>担任クラス一覧</h4>
-  <% @classrooms_hr.each do |classroom| %>
-<div class='a-box'>
-    <%= link_to classroom_path(classroom.id) do %>
-      <div class="genre-icon d-inline">
-        <%= l classroom.year_month, format: :short %>
-      </div>
-      <%= classroom.name %>
-      <% classroom.chatrooms.each do |chatroom| %>
-        <% if Chat.where(chatroom_id: chatroom.id, judgement: 1, checked: false).exists? %>
-          <div class="notification">
-            新着
+  <div class="class-box">
+    <h4>担任クラス一覧</h4>
+    <% @classrooms_hr.each do |classroom| %>
+      <div class='a-box'>
+        <%= link_to classroom_path(classroom.id) do %>
+          <div class="genre-icon d-inline">
+            <%= l classroom.year_month, format: :short %>
           </div>
-          <%# return エラー出る %>
+          <%= classroom.name %>
+          <% classroom.chatrooms.each do |chatroom| %>
+            <% if Chat.where(chatroom_id: chatroom.id, judgement: 2, checked: false).exists? %>
+              <div class="notification">
+                新着
+              </div>
+              <%# return エラー出る %>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
-</div>
-  <% end %>
+  </div>
   <%# /担任クラスの表示 %>
   <%# 担当クラスの表示 %>
-  <h4>担当クラス一覧</h4>
-  <% @classrooms_cl.each do |classroom| %>
-    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
-  <% end %>
+  <div class="class-box">
+    <h4>担当クラス一覧</h4>
+    <% @classrooms_cl.each do |classroom| %>
+      <%= render partial: "classroom_each", locals: {classroom: classroom} %>
+    <% end %>
+  </div>
 <%# /担当クラスの表示 %>
-  <h4>クラス一覧</h4>
-  <%# 全てのクラスルームの表示 %>
-  <% @classrooms.each do |classroom| %>
-    <%= render partial: "classroom_each", locals: {classroom: classroom} %>
-  <% end %>
+  <div class="class-box">
+    <h4>クラス一覧</h4>
+    <%# 全てのクラスルームの表示 %>
+    <% @classrooms.each do |classroom| %>
+      <%= render partial: "classroom_each", locals: {classroom: classroom} %>
+    <% end %>
+  </div>
   <%# /全てのクラスルームの表示 %>
 <% end %>
 <%# /講師表示内容 %>
@@ -75,3 +72,39 @@
   <% end %>
 <% end %>
 <%# /学生表示内容 %>
+
+<%# アプリケーション紹介 %>
+
+<h2 class="top-moji">クラス管理をもっと、便利に。</h2>
+  <ul class="lists">
+    <li class="list">
+      <%= image_tag "class.png", class:"list-pict", size: '100x100' %>
+      <h3 class="list-text">
+        クラス管理
+      </h3>
+      <p class="list-description">
+        クラスの管理が簡単に！
+      </p>
+    </li>
+    <li class="list">
+      <%= image_tag "chat.png", class:"list-pict", size: '100x100' %>
+      <h3 class="list-text">
+        チャットができる
+      </h3>
+      <p class="ist-description">
+        先生と、学生と、チャット！
+      </p>
+    </li>
+    <li class="list">
+      <%= image_tag "information.png", class:"list-pict", size: '100x100' %>
+      <h3 class="list-text">
+        情報共有
+      </h3>
+      <p class="list-description">
+        更新された情報をすぐ確認！
+      </p>
+    </li>
+  </ul>
+  <%= image_tag "world-hand.jpeg", class:"pic" %>
+
+<%# /アプリケーション紹介 %>
