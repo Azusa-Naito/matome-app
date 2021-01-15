@@ -1,124 +1,107 @@
-<h2>Students Sign up</h2>
+<%= render "shared/default_bar" %>
 
-<%= form_with model: @student, url: student_registration_path, class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      入力してください
-    </h1>
-  </div>
+<h2>学生しんきとうろく</h2>
 
-  <%# エラー文 %>
-  <%= render 'shared/error_messages', model: f.object %>
-  
-  <%# 名前 %>
-  <%# 学籍番号 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">学籍番号(student_number)半角</label>
-      <span class="indispensable">必須</span>
+<div class="class-box">
+  <%= form_with model: @student, url: student_registration_path, class: 'registration-main', local: true do |f| %>
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        入力してください
+      </h1>
     </div>
-    <div class='input-name-wrap'>
-      <%= f.text_field :student_number, class:"input-name", id:"student-number", name:"student-number", placeholder:"例) 1904001" %>
-    </div>
-  </div>
-  <%# /学籍番号 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">なまえ(alphabet or 漢字)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <div class='input-name-wrap'>
-      <%= f.text_area :name, class:"input-name", id:"last-name", name:"name", placeholder:"example) YamadaTaro" %>
-    </div>
-  </div>
-  <%# /名前 %>
-  <%# 名前カナ %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">なまえ(カタカナ)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <div class='input-name-wrap'>
-      <%= f.text_area :name_k, class:"input-name", id:"last-name", name:"name-k", placeholder:"example) ヤマダタロウ" %>
-    </div>
-  </div>
-  <%# /名前カナ %>
-  <%# ニックネーム %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">ニックネーム(nickname)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.text_field :nickname, class:"input-default", id:"nickname", name:"nickname", placeholder:"example) タロウ ", maxlength:"40" %>
-  </div>
-  <%# /ニックネーム %>
-  <%# 生年月日 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">誕生日(birthday)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <div class='input-birth-wrap'>
-      <%= raw sprintf(
-                  f.date_select(
-                    :birthday,
-                    class:'select-birth',
-                    id:"birth-date",
-                    name:"birthday",
-                    use_month_numbers: true,
-                    prompt:'--',
-                    start_year: 1920,
-                    end_year: (Time.now.year - 5),
-                    date_separator: '%s'),
-                  "<p> 年(year) </p>", "<p> 月(month) </p>") + "<p> 日(day) </p>" %>
-    </div>
-  </div>
-  <%# /生年月日 %>
-  <%# 画像 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">画像(picture)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <div class="field">
-      <%= f.label :image, name: "student-image", id: "student-image" %>
-      <%= f.file_field :image, id:"student-image" %>
-    </div>
-  </div>
-  <%# 画像 %>
-  <%# メールアドレス %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス(email)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :email, class:"input-default", id:"email", name:"email", placeholder:"example) ×××@sj.com", autofocus: true %>
-  </div>
-  <%# /メールアドレス %>
-  <%# パスワード %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード(password)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password, class:"input-default", id:"password", name:"password", placeholder:"Please input using alphanumeric character, using more than 6 characters." %>
-    <p class='info-text'>※英字と数字の両方を含めて設定してください</p>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード(password confirmation)</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password_confirmation, class:"input-default", id:"password-confirmation", name:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
-  </div>
-    <%# /パスワード %>
+
+    <%# エラー文 %>
+    <%= render 'shared/error_messages', model: f.object %>
     
-  <div class='register-btn'>
-    <%= f.submit "submit" ,class:"register-red-btn" %>
+    <%# 名前 %>
+    <%# 学籍番号 %>
+    <div class="form-group">
+      <label class="form-form-label">学籍番号(student_number)半角</label>
+      <span class="indispensable">必須</span>
+      <div class='input-name-wrap'>
+        <%= f.text_field :student_number, class:"form-control", id:"student-number", name:"student-number", placeholder:"例) 1904001" %>
+      </div>
+    </div>
+    <%# /学籍番号 %>
+    <div class="form-group">
+      <label class="form-label">なまえ(alphabet or 漢字)</label>
+      <span class="indispensable">必須</span>
+      </div>
+      <div class='input-name-wrap'>
+        <%= f.text_area :name, class:"form-control", id:"last-name", name:"name", placeholder:"example) YamadaTaro" %>
+    </div>
+    <%# /名前 %>
+    <%# 名前カナ %>
+    <div class="form-group">
+      <label class="form-label">なまえ(カタカナ)</label>
+      <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :name_k, class:"form-control", id:"last-name", name:"name-k", placeholder:"example) ヤマダタロウ" %>
+    </div>
+    <%# /名前カナ %>
+    <%# ニックネーム %>
+    <div class="form-group">
+      <label class="form-label">ニックネーム(nickname)</label>
+      <span class="indispensable">必須</span>
+      <%= f.text_field :nickname, class:"form-control", id:"nickname", name:"nickname", placeholder:"example) タロウ ", maxlength:"40" %>
+    </div>
+    <%# /ニックネーム %>
+    <%# 生年月日 %>
+    <div class="form-group">
+      <label class="form-label">誕生日(birthday)</label>
+      <span class="indispensable">必須</span>
+      <%= raw sprintf(
+            f.date_select(
+              :birthday,
+              class:"form-control",
+              id:"birth-date",
+              name:"birthday",
+              use_month_numbers: true,
+              prompt:'--',
+              start_year: 1920,
+              end_year: (Time.now.year - 5),
+              date_separator: '%s'),
+            "<p> 年(year) </p>", "<p> 月(month) </p>") + "<p> 日(day) </p>" %>
+    </div>
+    <%# /生年月日 %>
+    <%# 画像 %>
+    <div class="form-group">
+      <label class="form-label">画像(picture)</label>
+      <span class="indispensable">必須</span>
+      <div class="field">
+        <%= f.label :image, name: "student-image", id: "student-image" %>
+        <%= f.file_field :image, id:"student-image" %>
+      </div>
+    </div>
+    <%# 画像 %>
+    <%# メールアドレス %>
+    <div class="form-group">
+      <label class="form-label">メールアドレス(email)</label>
+      <span class="indispensable">必須</span>
+      <%= f.email_field :email, class:"form-control", id:"email", name:"email", placeholder:"example) ×××@sj.com", autofocus: true %>
+    </div>
+    <%# /メールアドレス %>
+    <%# パスワード %>
+    <div class="form-group">
+      <label class="form-label">パスワード(password)</label>
+      <span class="indispensable">必須</span>
+      <%= f.password_field :password, class:"form-control", id:"password", name:"password", placeholder:"Please input using alphanumeric character, using more than 6 characters." %>
+      <p class='info-text'>※英字と数字の両方を含めて設定してください</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">パスワード(password confirmation)</label>
+      <span class="indispensable">必須</span>
+      <%= f.password_field :password_confirmation, class:"form-control", id:"password-confirmation", name:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
+    </div>
+      <%# /パスワード %>
+      
+    <div class='register-btn'>
+      <%= f.submit "しんきとうろく" ,class:"btn-primary" %>
+    </div>
+    <p class='register-info'>本人情報の登録について</p>
   </div>
-  <p class='register-info'>本人情報の登録について</p>
-</div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item"><%= link_to "講師はこちら", new_teacher_session_path, class: "nav-link"%></li>
+      <li class="nav-item"><%= link_to "学生はこちら", new_student_session_path, class: "nav-link"%></li>
+      <li class="nav-item"><%= link_to '講師ゲストログイン', teachers_guest_sign_in_path, method: :post, class: "nav-link"%></li>
+      <li class="nav-item"><%= link_to '学生ゲストログイン', students_guest_sign_in_path, method: :post, class: "nav-link"%></li>
+    </ul>
+  </div>
+</nav>
