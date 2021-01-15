@@ -7,17 +7,14 @@ class ChatroomsController < ApplicationController
     @classroom = Classroom.find(params[:classroom_id])
     if teacher_signed_in?
       @student = Student.find(params[:student])
-      @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
+      @chatroom = Chatroom.find_by(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
     elsif student_signed_in?
       @teacher = Teacher.where(id: @classroom.teacher_id)
       @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: current_student.id, teacher_id: @classroom.teacher_id)
     end
-    # 条件分岐
-    # 学生のチャットルームが既に存在したら
-    if @chatroom.present?
-    # if Chatroom.exists?(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
-      redirect_to classroom_chatroom_path(@classroom.id, @chatroom[0].id)
-    else #学生とのチャットルームが存在しなかったら
+    if @chatroom.present? #チャットルームが既に存在したら
+      redirect_to classroom_chatroom_path(@classroom.id, @chatroom.id)
+    else #チャットルームが存在しなかったら
       @chatroom = Chatroom.new(chatroom_params)
       if @chatroom.valid?
         @chatroom.save

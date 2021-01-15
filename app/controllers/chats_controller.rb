@@ -7,7 +7,6 @@ class ChatsController < ApplicationController
     @teacher = @chatroom.teacher
     @student = @chatroom.student
     @chats = Chat.where(chatroom_id: @chatroom.id)
-    # @chat = @chatroom.chats.new(chat_params)
     if @chat.valid?
       @chat.save
       redirect_to classroom_chatroom_path(@classroom.id, @chatroom.id)
