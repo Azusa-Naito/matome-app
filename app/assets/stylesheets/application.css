@@ -361,4 +361,13 @@ a:hover{
 .pic{
   width: 100%;
 }
+
+.lists-a {
+  display: flex;
+  justify-content: space-around;
+}
+
+.space{
+  margin: 30px;
+}
 /* TOPページ */

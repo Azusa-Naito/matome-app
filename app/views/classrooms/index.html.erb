@@ -47,11 +47,9 @@
     <% end %>
   </div>
   <%# /全てのクラスルームの表示 %>
-<% end %>
 <%# /講師表示内容 %>
-
 <%# 学生表示内容 %>
-<% if student_signed_in? %>
+<% elsif student_signed_in? %>
   <% @classrooms_st.each do |classroom| %>
     <%#= render partial: "classroom_each", locals: {classroom: classroom} %>
     <div class='a-box'>
@@ -70,6 +68,17 @@
       <% end %>
     </div>
   <% end %>
+<% else %>
+    <ul class="navbar-nav">
+      <div class="lists-a">
+        <li class="nav-item"><%= link_to "講師はこちら", new_teacher_session_path, class: "btn-primary space"%></li>
+        <li class="nav-item"><%= link_to '講師ゲストログイン', teachers_guest_sign_in_path, method: :post, class: "btn-primary space"%></li>
+      </div>
+      <div class="lists">
+        <li class="nav-item"><%= link_to "学生はこちら", new_student_session_path, class: "btn-primary space"%></li>
+        <li class="nav-item"><%= link_to '学生ゲストログイン', students_guest_sign_in_path, method: :post, class: "btn-primary space"%></li>
+      </div>
+    </ul>
 <% end %>
 <%# /学生表示内容 %>
 
