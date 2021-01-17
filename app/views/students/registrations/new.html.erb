@@ -3,14 +3,7 @@
 <h2>学生しんきとうろく</h2>
 
 <div class="class-box">
-  <%= form_with model: @student, url: student_registration_path, class: 'registration-main', local: true do |f| %>
-  <div class='form-wrap'>
-    <div class='form-header'>
-      <h1 class='form-header-text'>
-        入力してください
-      </h1>
-    </div>
-
+  <%= form_with model: @student, url: student_registration_path, local: true do |f| %>
     <%# エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>
     
@@ -97,7 +90,6 @@
       <%= f.submit "しんきとうろく" ,class:"btn-primary" %>
     </div>
     <p class='register-info'>本人情報の登録について</p>
-  </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
