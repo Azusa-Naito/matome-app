@@ -17,27 +17,22 @@
     <%# 名前 %>
     <%# 学籍番号 %>
     <div class="form-group">
-      <label class="form-form-label">学籍番号(student_number)半角</label>
+      <label class="form-label">学籍番号(student_number)半角</label>
       <span class="indispensable">必須</span>
-      <div class='input-name-wrap'>
-        <%= f.text_field :student_number, class:"form-control", id:"student-number", name:"student-number", placeholder:"例) 1904001" %>
-      </div>
+      <%= f.text_field :student_number, class:"form-control", id:"student-number", name:"student-number", placeholder:"example) 1904001" %>
     </div>
     <%# /学籍番号 %>
     <div class="form-group">
       <label class="form-label">なまえ(alphabet or 漢字)</label>
       <span class="indispensable">必須</span>
-      </div>
-      <div class='input-name-wrap'>
-        <%= f.text_area :name, class:"form-control", id:"last-name", name:"name", placeholder:"example) YamadaTaro" %>
+      <%= f.text_field :name, class:"form-control", id:"last-name", name:"name", placeholder:"example) YamadaTaro" %>
     </div>
     <%# /名前 %>
     <%# 名前カナ %>
     <div class="form-group">
       <label class="form-label">なまえ(カタカナ)</label>
       <span class="indispensable">必須</span>
-      </div>
-      <%= f.text_area :name_k, class:"form-control", id:"last-name", name:"name-k", placeholder:"example) ヤマダタロウ" %>
+      <%= f.text_field :name_k, class:"form-control", id:"last-name", name:"name-k", placeholder:"example) ヤマダタロウ" %>
     </div>
     <%# /名前カナ %>
     <%# ニックネーム %>
@@ -51,7 +46,8 @@
     <div class="form-group">
       <label class="form-label">誕生日(birthday)</label>
       <span class="indispensable">必須</span>
-      <%= raw sprintf(
+      <div>
+        <%= raw sprintf(
             f.date_select(
               :birthday,
               class:"form-control",
@@ -63,6 +59,7 @@
               end_year: (Time.now.year - 5),
               date_separator: '%s'),
             "<p> 年(year) </p>", "<p> 月(month) </p>") + "<p> 日(day) </p>" %>
+      </div>
     </div>
     <%# /生年月日 %>
     <%# 画像 %>
@@ -86,7 +83,7 @@
     <div class="form-group">
       <label class="form-label">パスワード(password)</label>
       <span class="indispensable">必須</span>
-      <%= f.password_field :password, class:"form-control", id:"password", name:"password", placeholder:"Please input using alphanumeric character, using more than 6 characters." %>
+      <%= f.password_field :password, class:"form-control", id:"password", name:"password", placeholder:"英(abc)数字(123)６字以上で入力してください" %>
       <p class='info-text'>※英字と数字の両方を含めて設定してください</p>
     </div>
     <div class="form-group">
