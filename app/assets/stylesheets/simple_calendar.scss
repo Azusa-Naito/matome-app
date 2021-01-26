@@ -1,6 +1,8 @@
 /* simple_calendarのカスタマイズ */
 .simple-calendar {
-  .day {}
+  .day {
+    height: 100px;
+  }
 
   .wday-0 {
     background-color: #ffcccc;
@@ -14,7 +16,9 @@
     background-color: #d9e6ff; 
   }
 
-  .today {}
+  .today {
+    background-color: #f1b594;
+  }
   .past {}
   .future {}
 

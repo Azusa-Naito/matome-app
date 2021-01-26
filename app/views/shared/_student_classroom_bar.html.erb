@@ -1,4 +1,4 @@
-<%# 使用するページ…Classrooms#show,Homeworks#show,Submissions#new,show,edit %>
+<%# 使用するページ…Classrooms#show,Homeworks#show,Submissions#new,show,edit,Chatrooms#show %>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
   <a class="navbar-brand js-scroll-trigger" href="#">
       <span class="d-none d-lg-block"><%= image_tag current_student.image.url, class: "img-fluid img-profile rounded-circle mx-auto mb-2" %></span>
@@ -14,7 +14,7 @@
           <%= "先生とチャットをする" %>
           <%# もしチャットルームがあったら通知を表示 %>
           <% @chatroom = Chatroom.find_by(classroom_id: @classroom.id, student_id: current_student.id) %>
-          <% if @chatroom.exists? %>
+          <% if @chatroom.present? %>
             <%# 未読の数をカウント %>
             <% @count = Chat.where(judgement: 1, chatroom_id: @chatroom.id,  checked: false).count %>
             <% if @count != 0 %>
