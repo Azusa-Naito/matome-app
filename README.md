@@ -24,8 +24,7 @@ Things you may want to cover:
 * ...
 
 # アプリ概要
-以前の職場でデータ管理方法や情報共有ツールが複数あっため、業務が煩雑になってしまう場面がありました。それを一括で管理できるアプリケーションがあればスムーズに仕事ができると思いこのアプリケーションを開発しました。
-ある学校で使用されることを想定しています。
+複数の業務（学生との連絡、授業内容の引継ぎ、宿題の確認、学生への情報共有等）を一括で管理できるアプリケーションです。以前の職場（日本語学校）でデータ管理方法や情報共有ツールが複数あっため、業務が煩雑になってしまう場面がありました。それらをまとめ、よりスムーズに業務が行えるように開発しました。日本語学校で使用されることを想定しています。
 
 # 使用技術・言語
 - フロントエンド…HTML/CSS, javascript, BootStrap
@@ -43,8 +42,6 @@ Things you may want to cover:
 - 宿題・宿題提出機能
 - チャット機能
 - 情報共有機能・コメント機能
-- 
-- 
 
 
 # このアプリで解決したい課題
@@ -61,6 +58,13 @@ Things you may want to cover:
 
 
 # テーブル設計
+
+
+# 使い方
+
+
+
+<!-- # テーブル設計
 
 ## teachers テーブル
 | Column          | Type    | Options     |
@@ -183,4 +187,4 @@ Things you may want to cover:
 | judgement  | integer  | null: false |
 ### Association
 - belongs_to :homework
-- belongs_to :student
+- belongs_to :student -->
