@@ -10,7 +10,7 @@ class ChatroomsController < ApplicationController
       @chatroom = Chatroom.find_by(classroom_id: @classroom.id, student_id: @student.id, teacher_id: current_teacher.id)
     elsif student_signed_in?
       @teacher = Teacher.where(id: @classroom.teacher_id)
-      @chatroom = Chatroom.where(classroom_id: @classroom.id, student_id: current_student.id, teacher_id: @classroom.teacher_id)
+      @chatroom = Chatroom.find_by(classroom_id: @classroom.id, student_id: current_student.id, teacher_id: @classroom.teacher_id)
     end
     if @chatroom.present? #チャットルームが既に存在したら
       redirect_to classroom_chatroom_path(@classroom.id, @chatroom.id)

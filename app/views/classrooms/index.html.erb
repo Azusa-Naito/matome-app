@@ -38,10 +38,10 @@
       <%= render partial: "classroom_each", locals: {classroom: classroom} %>
     <% end %>
   </div>
-<%# /担当クラスの表示 %>
+  <%# /担当クラスの表示 %>
+  <%# 全てのクラスルームの表示 %>
   <div class="class-box">
     <h4>クラス一覧</h4>
-    <%# 全てのクラスルームの表示 %>
     <% @classrooms.each do |classroom| %>
       <%= render partial: "classroom_each", locals: {classroom: classroom} %>
     <% end %>
@@ -51,19 +51,17 @@
 <%# 学生表示内容 %>
 <% elsif student_signed_in? %>
   <% @classrooms_st.each do |classroom| %>
-    <%#= render partial: "classroom_each", locals: {classroom: classroom} %>
+    <% chatroom = Chatroom.find_by(classroom_id: classroom.id, student_id: current_student.id) %>
     <div class='a-box'>
       <%= link_to classroom_path(classroom.id) do %>
         <div class="genre-icon d-inline">
           <%= l classroom.year_month, format: :short %>
         </div>
         <%= classroom.name %>
-        <% classroom.chatrooms.each do |chatroom| %>
-          <% if Chat.where(chatroom_id: chatroom.id, judgement: 1, checked: false).exists? %>
-            <div class="notification">
-              新着
-            </div>
-          <% end %>
+        <% if (chatroom.present?)&&(Chat.where(chatroom_id: chatroom.id, judgement: 1, checked: false).present?) %>
+          <div class="notification">
+            新着
+          </div>
         <% end %>
       <% end %>
     </div>
