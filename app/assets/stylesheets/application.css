@@ -188,13 +188,6 @@ a:hover{
 }
 /* もどるボタン */
 .back-btn {
-  /* background: #aaa;
-  border: 1px solid #aaa;
-  color: #fff;
-  border-radius: 5px;
-  padding: 15px 35%;
-  text-decoration: none; */
-
   padding: 10px 20px;
   border-radius: 5px;
   color: #fff;
@@ -351,10 +344,6 @@ a:hover{
   justify-content: space-around;
 }
 
-/* .list-pict {
-  margin-bottom: 20px;
-  width: 100%;
-} */
 .list {
   list-style: none;
   text-align: center;
