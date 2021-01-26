@@ -1,27 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+アプリケーションURL:http://classmatome.com/
 
 # アプリ概要
 複数の業務（学生との連絡、授業内容の引継ぎ、宿題の確認、学生への情報共有等）を一括で管理できるアプリケーションです。以前の職場（日本語学校）でデータ管理方法や情報共有ツールが複数あっため、業務が煩雑になってしまう場面がありました。それらをまとめ、よりスムーズに業務が行えるように開発しました。日本語学校で使用されることを想定しています。
