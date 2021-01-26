@@ -27,7 +27,7 @@ ja:
         password:              "パスワード"
         password_confirmation: "パスワード（かくにん）"
         student_number:        "学籍番号"
-        name:                  "名前（alphabet）"
+        name:                  "名前（alphabet or 漢字）"
         name_k:                "名前（カタカナ）"
         image:                 "画像"
         nickname:              "ニックネーム"

@@ -34,12 +34,12 @@ RSpec.describe Student, type: :model do
       it 'nameが空では登録できない' do
         @student.name = ''
         @student.valid?
-        expect(@student.errors.full_messages).to include("名前（alphabet）を入力してください")
+        expect(@student.errors.full_messages).to include("名前（alphabet or 漢字）を入力してください")
       end
       it 'nameがアルファベット以外では登録できない' do
         @student.name = Gimei.last.kanji
         @student.valid?
-        expect(@student.errors.full_messages).to include("名前（alphabet）はアルファベットのみで入力してください")
+        expect(@student.errors.full_messages).to include("名前（alphabet or 漢字）はアルファベットか漢字で入力してください")
       end
       it 'name_kが空では登録できない' do
         @student.name_k = ''
