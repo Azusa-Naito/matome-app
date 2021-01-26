@@ -28,16 +28,16 @@
 
 <% if teacher_signed_in? %>
   <% @classroom.students.each do |student| %>
-    <% submission = Submission.where(student_id: student.id, homework_id: @homework.id) %>
+    <% submission = Submission.find_by(student_id: student.id, homework_id: @homework.id) %>
     <div class="submission-box">
       <%= student.nickname %>
       <% if submission.exists? %>
         <span class="indispensable">提出</span>
         <%# 提出した日付・時間 %>
-        <%= l submission[0].created_at %>
+        <%= l submission.created_at %>
         <%# 宿題確認画面への遷移ボタン %>
         <div class="btn-contents">
-          <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission[0].id) %>
+          <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission.id) %>
         </div>
       <% end %>
     </div>
@@ -46,14 +46,14 @@
   <%= link_to "宿題提出", new_classroom_homework_submission_path(@classroom.id, @homework.id), class: "nav-link" %>
 
     <% submission = Submission.where(student_id: current_student.id, homework_id: @homework.id) %>
-    <% if submission.exists? && current_student.id == submission[0].student_id %>
+    <% if submission.exists? && current_student.id == submission.student_id %>
       <div class="submission-box">
         <span class="indispensable">提出</span>
         <%# 提出した日付・時間 %>
-        <%= l submission[0].created_at %>
+        <%= l submission.created_at %>
         <%# 宿題確認画面への遷移ボタン %>
         <div class="btn-contents">
-          <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission[0].id) %>
+          <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission.id) %>
         </div>
       </div>
     <% end %>
