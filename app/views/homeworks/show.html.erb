@@ -4,14 +4,12 @@
 <% else %>
   <%= render "shared/student_classroom_bar" %>
 <% end %>
-
-<h1>homeworks#show</h1>
 <div class="btn-box">
-  <div class="col-sm-8">
-  <div class="form-group">
-    宿題内容：
-    <%= @homework.content %>
-  </div>
+  <div class="col-sm-8 ">
+    <div class="form-group d-inline top">
+      宿題内容
+    </div>
+    ：<%= @homework.content %>
   <% if @homework.file.attached? %>
     <strong>ダウンロード:</strong>
     <%= link_to "添付ファイル" ,rails_blob_path(@homework.file) %>
@@ -31,7 +29,7 @@
     <% submission = Submission.find_by(student_id: student.id, homework_id: @homework.id) %>
     <div class="submission-box">
       <%= student.nickname %>
-      <% if submission.exists? %>
+      <% if submission.present? %>
         <span class="indispensable">提出</span>
         <%# 提出した日付・時間 %>
         <%= l submission.created_at %>
@@ -39,6 +37,7 @@
         <div class="btn-contents">
           <%= link_to "宿題確認", classroom_homework_submission_path(@classroom.id, @homework.id, submission.id) %>
         </div>
+        <% else %>
       <% end %>
     </div>
   <% end %>

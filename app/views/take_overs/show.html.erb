@@ -2,9 +2,12 @@
 
 <div class="btn-box">
   <div class="col-sm-8">
-    授業範囲：<p><%= @take_over.content %></p>
-    授業内容：<p><%= @take_over.detail %></p>
-    学生の様子：<p><%= @take_over.appearance %></p>
+    <div class="select-box top">授業範囲</div>
+    <%= @take_over.content %>
+    <div class="select-box top">授業内容</div>
+    <%= @take_over.detail %>
+    <div class="select-box top">学生の様子</div>
+    <%= @take_over.appearance %>
   </div>
 
   <% if current_teacher.id == @take_over.teacher_id %>

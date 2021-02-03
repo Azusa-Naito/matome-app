@@ -374,3 +374,16 @@ a:hover{
   margin: 30px;
 }
 /* TOPページ */
+
+/* showページ */
+.top{
+  margin-top: 20px;
+  color: #EDF2FB;
+  background-color: #e59367;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0px 5px;
+}
+/* showページ */
