@@ -1,18 +1,19 @@
-<h1>informations#show</h1>
 <% if teacher_signed_in? %>
   <%= render "shared/teacher_bar" %>
 <% elsif student_signed_in? %>
   <%= render "shared/student_bar" %>
 <% end %>
 <div class="btn-box">
-  <div class="col-sm-8">
-      <p>タイトル：<%= @information.title %></p>
+  <div class="col-sm-8 margin">
+    <div class="date-and-time">
+      <%= l @information.created_at %>
+    </div>
+    <h2><%= @information.title %></h2>
       <p>ジャンル：<%= @information.genre.name %></p>
       <%# <div class='info-content'> %>
         <p>内容：<%= @information.content %></p>
       <%# </div> %>
       <p>先生：<%= @information.teacher.nickname %>先生</p>
-      <%= @information.created_at %>
 
     <%# 質問投稿フォーム %>
     <div class='inquiry'>
@@ -23,19 +24,16 @@
           <%# エラー文 %>
           <%= render 'shared/error_messages', model: f.object %>
 
-          <div class='chat-room-form__field'>
-            <div class='chat-room-form__field--left'>
-              <%= f.label :質問, class: 'chat-room-form__label'%>
-            </div>
-            <div class='chat-room-form__field--right'>
-              <%= f.text_area :content, class: 'chat__room_name chat-room-form__input', placeholder: '質問を入力してください'%>
+          <div class=''>
+            <%= f.label :質問, class: ''%>
+            <div class=''>
+              <%= f.text_area :content, class: '', placeholder: '質問を入力してください'%>
             </div>
           </div>
 
-          <div class='chat-room-form__field'>
-            <div class='chat-room-form__field--left'></div>
-            <div class='chat-room-form__field--right'>
-              <%= f.submit "質問する", class: 'chat-room-form__action-btn'%>
+          <div class=''>
+            <div class=''>
+              <%= f.submit "質問する", class: 'btn-primary'%>
             </div>
           </div>
         <% end %>

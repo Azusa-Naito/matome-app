@@ -387,3 +387,14 @@ a:hover{
   margin: 0px 5px;
 }
 /* showページ */
+
+/* informationページ */
+/* show */
+.date-and-time{
+  text-align: right;
+}
+
+.margin{
+  margin: 30px;
+}
+/* informationページ */
