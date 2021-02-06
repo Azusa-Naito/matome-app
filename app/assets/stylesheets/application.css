@@ -397,4 +397,24 @@ a:hover{
 .margin{
   margin: 30px;
 }
+
+.inquiry{
+  border-top: dashed 2px #5b8bd0;
+  border-bottom: dashed 2px #5b8bd0;
+}
+
+.inquiry-box{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #474747;
+  background: whitesmoke;/*背景色*/
+  border-left: double 7px lightblue;/*左線*/
+  border-right: double 7px lightblue;/*右線*/
+}
+
+.inquiry-p{
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
 /* informationページ */
