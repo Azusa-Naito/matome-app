@@ -389,7 +389,18 @@ a:hover{
 /* showページ */
 
 /* informationページ */
-/* show */
+/* #index */
+.information{
+  margin: 30px;
+  border: solid 2px lightgray;
+}
+
+.info-content{
+  white-space: pre-line;
+}
+/* #index */
+
+/* #show */
 .date-and-time{
   text-align: right;
 }
@@ -399,6 +410,7 @@ a:hover{
 }
 
 .inquiry{
+  margin-top: 50px;
   border-top: dashed 2px #5b8bd0;
   border-bottom: dashed 2px #5b8bd0;
 }
@@ -417,4 +429,5 @@ a:hover{
   display: flex;
   justify-content: space-between;
 }
+/* #show */
 /* informationページ */

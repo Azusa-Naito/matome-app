@@ -1,4 +1,3 @@
-<h1>informations#index</h1>
 <% if teacher_signed_in? %>
   <%= render "shared/teacher_bar" %>
 <% elsif student_signed_in? %>
@@ -8,10 +7,12 @@
   <div class='information'>
     <%= link_to information_path(information.id) do %>
       <div class='infomation'>
-        <p><%= information.title %></p>
-        <p><%= information.genre.name %></p>
+        <h4><%= information.title %></h4>
+        <div class="genre-icon d-inline">
+          <%= information.genre.name %>
+        </div>
         <div class='info-content'>
-          <p><%= information.content %></p>
+          <%= information.content %>
         </div>
         <p><%= information.teacher.nickname %></p>
         </div>
