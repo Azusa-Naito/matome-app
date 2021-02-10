@@ -5,17 +5,15 @@
 <% end %>
 <% @informations.each do |information| %>
   <div class='information'>
-    <%= link_to information_path(information.id) do %>
-      <div class='infomation'>
-        <h4><%= information.title %></h4>
-        <div class="genre-icon d-inline">
-          <%= information.genre.name %>
-        </div>
-        <div class='info-content'>
-          <%= information.content %>
-        </div>
-        <p><%= information.teacher.nickname %></p>
-        </div>
+    <%= link_to information_path(information.id), class: "info-a" do %>
+      <h4><%= information.title %></h4>
+      <div class="genre-icon d-inline">
+        <%= information.genre.name %>
+      </div>
+      <div class='info-content'>
+        <%= information.content %>
+      </div>
+      <p><%= information.teacher.nickname %></p>
     <% end %>
   </div>
 <% end %>

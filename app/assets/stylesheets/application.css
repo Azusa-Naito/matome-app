@@ -395,6 +395,10 @@ a:hover{
   border: solid 2px lightgray;
 }
 
+.info-a:hover{
+  text-decoration: none;
+}
+
 .info-content{
   white-space: pre-line;
 }
