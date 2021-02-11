@@ -184,7 +184,6 @@ a:hover{
 
 .btn-contents {
   display: inline;
-  /* margin-top: 20px; */
 }
 /* もどるボタン */
 .back-btn {
@@ -196,6 +195,18 @@ a:hover{
   display: block;
   margin: 20px auto 0 auto;
   width: 100px;
+}
+
+/* チャット送信ボタン */
+.btn-contents-s {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-submit-s{
+  width: 100px;
+  height: 100px;
 }
 
 /* Chatrooms#show */
